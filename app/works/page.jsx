@@ -20,7 +20,7 @@ const work = [
     title: 'Biringe',
     year: '2022 - 2024',
     description:
-      'We identified a substantial demand and limited availability of quality Hyderabadi biryani in Manipal and capitalized on the opportunity by establishing a stall at the colleges cultural fest, resulting in remarkable success and financial gain. We anticipate further development and expansion of this initiative in the future.',
+      'Co-founded and managed a food venture in Manipal by identifying the unmet demand for authentic Hyderabadi biryani. Successfully launched at the college cultural fest, achieving strong customer traction and financial gains, and subsequently expanded into a small restaurant that operated profitably. Developed skills in business strategy, operations, and customer relationship management before concluding the venture upon graduation, as we relocated to different cities.',
     href: ''
   },
 ];
@@ -70,3 +70,4 @@ const Works = () => {
 };
 
 export default Works;
+
