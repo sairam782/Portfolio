@@ -60,11 +60,11 @@ const projects={
   title:"Projects",
   description:"I am a versatile tech enthusiast with practical experience in machine learning, IoT, and data visualization. My expertise lies in designing and optimizing machine learning models, developing end-to-end IoT applications, and creating meaningful visualizations to interpret complex datasets. I am driven by a passion for applying these skills to solve real-world challenges and deliver impactful solutions.",
   items:[
-    { titleofproject:"Eyesight power prediction using deep learning methods" },
-    { titleofproject:"Movie Recommender System" },
-    { titleofproject:"Cancer Imaging using GenAI (In progress)" },
-    { titleofproject:"IoT-based Attendance Monitoring system using RFID" },
-    { titleofproject:"Email Classifier" },
+    { titleofproject:"Invisible Watermarking for Synthetic Images" },
+    { titleofproject:"ResNet–Vision Transformer for Deepfake Detection" },
+    { titleofproject:"Synthetic MRI Generation for Brain Tumor Classification" },
+    { titleofproject:"Hairstyle Recommendation System Using StyleGAN" },
+    { titleofproject:"Smart IoT-Based Precision Farm Management System" },
   ]
 };
 
