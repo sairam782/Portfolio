@@ -1,5 +1,3 @@
-const { DEFAULT_RUNTIME_WEBPACK } = require('next/dist/shared/lib/constants');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -22,16 +20,22 @@ module.exports = {
         xl: "1200px",
       },
       fontFamily:{
-        primary:"var(--font-jetbrainsMono)",
+        sans:["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        primary:["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono:["JetBrains Mono", "SFMono-Regular", "Consolas", "monospace"],
       },
   
     extend: {
       colors:{
-        primary: "1#c1c22",
+        primary: "#030308",
+        surface: "#080912",
+        muted: "#10121d",
         accent:{
-          DEFAULT:"#7fff00",
-          hover:"#99ff33",
+          DEFAULT:"#00f0ff",
+          hover:"#6ff7ff",
         },
+        violetGlow: "#bc13fe",
+        cyanSoft: "#00f0ff",
       },
       keyframes: {
         "accordion-down": {

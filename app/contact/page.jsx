@@ -1,122 +1,113 @@
 "use client";
+
+import { motion } from "framer-motion";
+import { Copy, Linkedin, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-
-const info = [
+const contactInfo = [
   {
-    icon: <FaEnvelope />,
+    icon: Mail,
     title: "Email",
-    description: "abhi.gaduputi@gmail.com",
+    value: "abhi.gaduputi@gmail.com",
+    href: "mailto:abhi.gaduputi@gmail.com",
   },
-
   {
-    icon: <FaPhoneAlt />,
-    title: 'Phone',
-    description: '+1 (908) 356-9089',
+    icon: Phone,
+    title: "Phone",
+    value: "+1 (908) 356-9089",
+    href: "tel:+19083569089",
   },
-
   {
-    icon: <FaMapMarkerAlt />,
-    title: "Address",
-    description: "Manalapan Township, New Jersey, United States.",
+    icon: MapPin,
+    title: "Location",
+    value: "Manalapan Township, New Jersey",
+    href: null,
+  },
+  {
+    icon: Linkedin,
+    title: "LinkedIn",
+    value: "abhishek-sairam-gaduputi",
+    href: "https://www.linkedin.com/in/abhishek-sairam-gaduputi-23899b175/",
   },
 ];
 
-import { motion } from "framer-motion";
-const contact = () => {
+const Contact = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "19083569089"; 
-    const message = "Hi! I came across your portfolio and would like to connect with you.";
+    const phoneNumber = "19083569089";
+    const message = "Hi Abhishek, I came across your AI portfolio and would like to connect.";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText("abhi.gaduputi@gmail.com");
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-        transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
-      }}
-      className="py-6"
+    <motion.main
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }}
+      className="min-h-[80vh] py-14 xl:py-20"
     >
       <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row gap-[30px]">
-          <div className="xl:w-[54%] order-2 xl:order-none">
-            <form className="flex flex-col gap-6 p-10 bg-[#2727272c] rounded-xl">
-              <h3 className="text-4xl text-accent">Let's work together</h3>
-              <p className="text-white/60">
-Whether you have a project in mind or an idea to share, I’m here to listen. Click the button below to connect with me on WhatsApp, and I’ll get back to you as soon as possible. You can also reach me through LinkedIn, Instagram, or Email. I’m excited to hear from you and look forward to the opportunity to collaborate!
-              </p>
+        <div className="grid gap-8 xl:grid-cols-[1fr_0.85fr]">
+          <section className="light-card rounded-3xl p-6 xl:p-10">
+            <p className="eyebrow">Contact</p>
+            <h1 className="h2 mt-4 text-white">Let us build something intelligent.</h1>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/64">
+              I am open to AI engineering, machine learning, analytics, and product
+              intelligence opportunities. Send a project idea, role, research direction,
+              or collaboration note.
+            </p>
 
-              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input type="firstname" placeholder="Firstname" />
-                <Input type="lastname" placeholder="Lastname" />
-                <Input type="email" placeholder="Email address" />
-                <Input type="phone" placeholder="Phone number" />
-              </div>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="select a service" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Select a service</SelectLabel>
-                    <SelectItem value="est">Web Development</SelectItem>
-                    <SelectItem value="cst">Data Visualization</SelectItem>
-                    <SelectItem value="mst">Machine Learning</SelectItem>
-                    <SelectItem value="mst">DBMS</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <Textarea
-                className="h-[200px]"
-                placeholder="Type your message here."
-              /> */}
-
-              <Button
-                size="md"
-                className="max-w-40 text-black"
-                type="button"
-                onClick={handleWhatsAppClick}
-              >
-                Send message
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Button size="lg" className="gap-2" type="button" onClick={handleWhatsAppClick}>
+                <MessageCircle size={18} />
+                Message on WhatsApp
               </Button>
-            </form>
-          </div>
-          <div className="flex-1 flex items-start xl:justify-end order-1 xl:order-none mb-8 xl:mb-0 mt-20">
-            <ul className="flex flex-col gap-10">
-              {info.map((item, index) => {
-                return (
-                  <li key={index} className="flex items-center gap-6">
-                    <div className="w-[52px] h-[52px] xl:w-[72px] xl:h-[72px] bg-[#27272c] text-accent rounded-md flex items-center justify-center">
-                      <div className="text-[28px]">{item.icon}</div>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white/60">{item.title}</p>
-                      <h3 className="text-xl">{item.description}</h3>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+              <Button variant="outline" size="lg" className="gap-2" type="button" onClick={copyEmail}>
+                <Copy size={18} />
+                Copy email
+              </Button>
+            </div>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              {["AI systems", "ML products", "Data dashboards"].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{item}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <aside className="grid gap-4">
+            {contactInfo.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <div className="light-card flex items-center gap-4 rounded-3xl p-5 hover:border-accent/35">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent/12 p-3 text-accent">
+                    <Icon size={22} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/40">{item.title}</p>
+                    <p className="mt-1 break-words font-semibold text-white">{item.value}</p>
+                  </div>
+                </div>
+              );
+
+              return item.href ? (
+                <a key={item.title} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                  {content}
+                </a>
+              ) : (
+                <div key={item.title}>{content}</div>
+              );
+            })}
+          </aside>
         </div>
       </div>
-    </motion.section>
+    </motion.main>
   );
 };
 
-export default contact;
+export default Contact;

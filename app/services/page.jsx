@@ -1,68 +1,74 @@
-
-
-
 "use client";
 
-import { BsArrowDownRight } from 'react-icons/bs';
-import Link from "next/link";
-import { easeIn, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { BarChart3, BrainCircuit, Code2, Database } from "lucide-react";
 
-const services = [
+const capabilities = [
   {
-    num: '01',
-    title: 'Web Development',
-    description: 'Experienced in developing robust, scalable web applications using Next.js, leveraging server-side rendering and static site generation. Proficient in React, JavaScript, and Tailwind CSS for building interactive user interfaces, and Node.js for backend services. Skilled in API integration, authentication, and state management, ensuring optimal performance. Competent in deploying applications on platforms like Vercel and AWS for high availability and scalability.',
-    href: ''
+    icon: BrainCircuit,
+    title: "Machine Learning",
+    description:
+      "Model prototyping, recommendation logic, evaluation, error analysis, and applied AI workflows.",
   },
   {
-    num: '02',
-    title: 'Data Visualization',
-    description: 'Expert in transforming data into compelling visual narratives using tools like Tableau, Power BI, and Python libraries such as Matplotlib and Seaborn. Skilled in creating interactive dashboards and visual reports that highlight key insights, trends, and patterns. Proficient in data analysis techniques to support informed decision-making, storytelling with data, and effectively communicating complex information to diverse audiences.',
-    href: ''
+    icon: BarChart3,
+    title: "Data Products",
+    description:
+      "Dashboards, analytics workflows, product metrics, Retool tools, and decision-ready reporting.",
   },
   {
-    num: '03',
-    title: 'Machine Learning',
-    description: 'Proficient in developing and deploying machine learning models using Python libraries such as scikit-learn, TensorFlow, and Keras. Experienced in both supervised and unsupervised learning techniques, including classification, regression, and clustering. Skilled in feature engineering, model evaluation, and hyperparameter tuning to optimize performance. Capable of transforming data into predictive insights for strategic decision-making.',
-    href: ''
+    icon: Database,
+    title: "Data Engineering",
+    description:
+      "SQL and NoSQL data handling, MongoDB-backed workflows, structured queries, and clean data views.",
   },
   {
-    num: '04',
-    title: 'Database Management',
-    description: 'Skilled in designing, implementing, and maintaining databases to ensure integrity, security, and performance. Proficient in SQL and NoSQL databases, including MySQL, PostgreSQL, and MongoDB. Experienced in writing complex queries, optimizing database performance, and ensuring data backup and recovery. Capable of managing database environments to support scalability, high availability, and efficient data retrieval.',
-    href: ''
+    icon: Code2,
+    title: "Frontend Systems",
+    description:
+      "Clean portfolio, dashboard, and web interfaces using React, Next.js, and Tailwind CSS.",
   },
 ];
 
 const Services = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-12 xl:py-0 mt-6 mb-6" >
-      <div className="container mx-auto px-4">
+    <main className="min-h-[80vh] py-14 xl:py-20">
+      <div className="container mx-auto">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }}
+          className="mb-12 max-w-4xl"
         >
-          {services.map((service, index) => (
-            <div key={index} className="flex flex-col justify-center gap-6 group bg-gray-900 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-              <div className="w-full flex justify-between items-center">
-                <div className="text-5xl font-extrabold text-outline text-transparent group-hover:text-outline-hover transition-all duration-500">
-                  {service.num}
-                </div>
-                <Link href={service.href} className="w-[70px] h-[70px] rounded-full bg-white group-hover:bg-accent transition-all duration-500 flex justify-center items-center hover:-rotate-45">
-                  <BsArrowDownRight className="text-black text-3xl" />
-                </Link>
-              </div>
-              <h2 className="text-[36px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500">
-                {service.title}
-              </h2>
-              <p className="text-white/60">{service.description}</p>
-              <div className="border-b border-white/20 w-full"></div>
-            </div>
-          ))}
+          <p className="eyebrow">Capabilities</p>
+          <h1 className="h2 mt-4 text-white">AI, data, and product engineering support.</h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-white/62">
+            A focused set of skills for teams that need practical AI systems,
+            better data visibility, or clean technical interfaces.
+          </p>
         </motion.div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {capabilities.map((service, index) => {
+            const Icon = service.icon;
+
+            return (
+              <motion.article
+                key={service.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: index * 0.08, duration: 0.45 } }}
+                className="light-card rounded-3xl p-6 xl:p-8"
+              >
+                <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/12 text-accent">
+                  <Icon size={26} />
+                </div>
+                <h2 className="text-3xl font-bold text-white">{service.title}</h2>
+                <p className="mt-4 leading-8 text-white/64">{service.description}</p>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
-    </section>
+    </main>
   );
 };
 

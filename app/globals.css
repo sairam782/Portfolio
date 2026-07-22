@@ -5,25 +5,234 @@
 
 
 @layer base {
-    body {
-        @apply font-primary bg-black text-[#43b3ae] leading-loose;
+    :root {
+        color-scheme: dark;
+        --pointer-x: 50%;
+        --pointer-y: 35%;
     }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply min-h-screen overflow-x-hidden bg-primary font-sans text-slate-100 antialiased;
+        background:
+            linear-gradient(135deg, #030308 0%, #080912 48%, #030308 100%);
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -4;
+        pointer-events: none;
+        background:
+            radial-gradient(circle at 18% 8%, rgba(0, 240, 255, 0.13), transparent 32rem),
+            radial-gradient(circle at 78% 18%, rgba(188, 19, 254, 0.14), transparent 30rem),
+            radial-gradient(circle at 50% 105%, rgba(0, 240, 255, 0.08), transparent 36rem);
+    }
+
+    ::selection {
+        @apply bg-accent/30 text-white;
+    }
+
     .h1{
-        @apply text-[48px] xl:text-[55px] leading-[1.1] font-semibold;
+        @apply text-[44px] sm:text-[56px] xl:text-[78px] leading-[0.95] font-extrabold tracking-normal;
     }
     .h2{
-        @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+        @apply text-[34px] xl:text-[52px] leading-[1.02] font-bold tracking-normal;
     }
     .h3{
-        @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+        @apply text-[20px] xl:text-[24px] leading-[1.15] font-semibold tracking-normal;
     }
     .text-outline {
-        -webkit-text-stroke: 1px #43b3ae;
+        -webkit-text-stroke: 1px rgba(132, 204, 22, 0.7);
     }
     .text-outline-hover{
-        -webkit-text-stroke: 1px #43b3ae;
+        -webkit-text-stroke: 1px rgba(132, 204, 22, 0.95);
     }
-
-
 }
 
+@layer components {
+    .container {
+        @apply px-5;
+    }
+
+    .eyebrow {
+        @apply font-mono text-xs font-semibold uppercase tracking-[0.22em] text-accent;
+    }
+
+    .glass-panel {
+        @apply border border-white/10 bg-white/[0.055] shadow-2xl shadow-black/30 backdrop-blur-xl;
+    }
+
+    .soft-card {
+        @apply border border-white/10 bg-white/[0.055] shadow-xl shadow-black/20 transition duration-300;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #ffffff 12%, #00f0ff 52%, #bc13fe 92%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 0 40px rgba(0, 240, 255, 0.26));
+    }
+
+    .light-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+            radial-gradient(circle at 20% 0%, rgba(0, 240, 255, 0.12), transparent 18rem),
+            radial-gradient(circle at 100% 100%, rgba(188, 19, 254, 0.09), transparent 18rem);
+        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.36);
+        backdrop-filter: blur(22px);
+    }
+
+    .light-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent) top / 100% 1px no-repeat,
+            radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.12), transparent 22rem);
+        opacity: 0.8;
+    }
+}
+
+.ambient-stage {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.network-canvas {
+    position: absolute;
+    inset: 0;
+    opacity: 0.42;
+    mix-blend-mode: screen;
+}
+
+.ambient-gradient,
+.ambient-grid,
+.ambient-cursor,
+.ambient-noise,
+.ambient-beam {
+    position: absolute;
+    inset: 0;
+}
+
+.ambient-gradient {
+    background:
+        radial-gradient(circle at 18% 16%, rgba(0, 240, 255, 0.16), transparent 26rem),
+        radial-gradient(circle at 82% 72%, rgba(188, 19, 254, 0.17), transparent 30rem),
+        radial-gradient(circle at 58% 28%, rgba(0, 240, 255, 0.07), transparent 24rem);
+    animation: ambientDrift 18s ease-in-out infinite alternate;
+}
+
+.ambient-grid {
+    opacity: 0.28;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(circle at 52% 28%, black, transparent 72%);
+}
+
+.ambient-beam {
+    width: 70vw;
+    height: 38vh;
+    left: 12vw;
+    top: 18vh;
+    border-radius: 999px;
+    filter: blur(72px);
+    opacity: 0.16;
+    transform: rotate(-16deg);
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.7), rgba(188, 19, 254, 0.5), transparent);
+    animation: sweepLight 16s ease-in-out infinite alternate;
+}
+
+.ambient-beam-two {
+    left: 34vw;
+    top: 58vh;
+    height: 28vh;
+    opacity: 0.11;
+    transform: rotate(18deg);
+    animation-duration: 22s;
+}
+
+.ambient-cursor {
+    background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.13), rgba(0, 240, 255, 0.08) 9rem, transparent 24rem);
+    mix-blend-mode: screen;
+    transition: background 120ms linear;
+}
+
+.terminal-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background: rgba(2, 2, 4, 0.82);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 0 50px rgba(0, 240, 255, 0.03);
+}
+
+.terminal-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00f0ff, #bc13fe);
+    opacity: 0.8;
+}
+
+.terminal-dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 999px;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: bottom;
+    background: #00f0ff;
+    animation: terminalBlink 1s step-end infinite;
+}
+
+@keyframes terminalBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.ambient-noise {
+    z-index: 1;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px;
+}
+
+@keyframes ambientDrift {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(1);
+    }
+    100% {
+        transform: translate3d(2%, 1%, 0) scale(1.04);
+    }
+}
+
+@keyframes sweepLight {
+    0% {
+        transform: translate3d(-8%, 0, 0) rotate(-16deg) scale(0.95);
+    }
+    100% {
+        transform: translate3d(8%, -4%, 0) rotate(-8deg) scale(1.08);
+    }
+}

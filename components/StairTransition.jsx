@@ -9,14 +9,10 @@ const StairTransition = () => {
   return (
     <AnimatePresence mode ="wait">
       <div key={pathname}>
-        <div className="h-screen w-screen fixed top-0 left-0 right-0 pointer-events-none z-40 flex">
-          <Stairs />
-        </div>
-        
       <motion.div 
-      className="h-screen w-screen fixed bg-black top-0 pointer-events-none" 
-      initial={{opacity:1}} 
-      animate={{opacity:0,transition:{delay:1,duration:0.2, ease:'easeInOut'},
+      className="fixed top-0 z-40 h-1 w-screen origin-left bg-accent pointer-events-none" 
+      initial={{scaleX:1, opacity:1}} 
+      animate={{scaleX:0, opacity:0, transition:{duration:0.45, ease:'easeInOut'},
       }} />
 
 

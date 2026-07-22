@@ -3,42 +3,42 @@
 // Dynamically import the CountUp component with SSR disabled
 import CountUp from "react-countup";
 
-const stas = [
-    {
-        num: 16,
-        text: "Courses Completed",
-    },
+const stats = [
     {
         num: 7,
-        text: "Projects Completed",
+        text: "Applied AI projects",
+    },
+    {
+        num: 3,
+        text: "Industry roles",
     },
     {
         num: 8,
-        text: "Technologies Mastered",
+        text: "Core ML tools",
     },
     {
         num: 150,
-        text: "Code Commits",
+        text: "Commits shipped",
     },
 ];
 
 const Stats = () => {
     return (
-        <section className="pt-2 pb-2 xl:pt-0 xl:pb-0 ">
+        <section className="py-8">
             <div className="container mx-auto">
-                <div className="flex flex-wrap gap-6 max-w-[80vw] mx-auto xl:max-w-none">
-                    {stas.map((item, index) => {
+                <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+                    {stats.map((item, index) => {
                         return (
-                            <div className="flex-1 flex gap-4 items-center justify-center xl:justify-start" key={index}>
-                                <div className="text-4xl xl:text-6xl font-extrabold">
+                            <div className="light-card rounded-2xl p-5" key={index}>
+                                <div className="font-mono text-4xl font-bold text-accent xl:text-5xl">
                                     <CountUp
                                         end={item.num}
-                                        duration={5}
-                                        delay={2}
+                                        duration={2.2}
+                                        delay={0.1}
                                     />
-                                    {item.num === 150 && "+"} {/* Add + if num is 100 */}
+                                    {item.num === 150 && "+"}
                                 </div>
-                                <p className={`${item.text.length < 15 ? "max-w-[100px]" : "max-w-[150px]"} leading-snug text-white/80`}>
+                                <p className="mt-2 text-sm font-medium leading-snug text-white/60">
                                     {item.text}
                                 </p>
                             </div>
