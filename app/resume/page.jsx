@@ -1,115 +1,148 @@
 "use client";
 
 import { useState } from "react";
-import { FaPython, FaGitAlt, FaGithub } from "react-icons/fa";
-import { SiCplusplus, SiC, SiMysql, SiMongodb, SiDatabricks, SiTableau  } from "react-icons/si";
+import { FaPython, FaGitAlt, FaGithub, FaDatabase } from "react-icons/fa";
+import { SiCplusplus, SiC, SiMysql, SiMongodb, SiTableau } from "react-icons/si"; // ✅ these were in your original working file, kept as-is
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'; 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, BrainCircuit, Flame, Table2, Sigma, Network, Cloud } from 'lucide-react';
+// ✅ swapped the unverified react-icons brand logos (TensorFlow, PyTorch, Scikit-learn, Pandas, Neo4j, Azure)
+// for guaranteed-available lucide-react icons, since those Si* component names couldn't be confirmed
+// against your installed react-icons version and were causing "Element type is invalid" at render time.
 
 const about = {
-  title:'About me',
-  description:"My journey into technology began with a deep curiosity about how things work, evolving into a genuine passion for coding and innovation. Throughout my career, I have accumulated valuable experience across various projects and roles, thriving on the challenge of tackling complex problems and crafting effective solutions that create a positive impact.Outside of my professional endeavors, I actively explore emerging tech trends, contribute to open-source initiatives, and continuously expand my skill set. I am dedicated to lifelong learning and excited about the prospect of collaborating on meaningful projects that push the boundaries of what's possible. Let’s connect and explore how we can create something extraordinary together!",
-  info:[
+  title: 'About me',
+  description: "I am a graduate researcher with hands on experience across generative modeling, computer vision, and multi agent systems, combined with production ML engineering experience shipping recommendation, perception, and analytics systems used at scale. I am comfortable moving between research experimentation and end to end deployment, and I am always excited to collaborate on meaningful projects that push the boundaries of what's possible.",
+  info: [
     {
-      fieldName:"Name:",
-      fieldValue:"Abhishek Sairam Gaduputi"
+      fieldName: "Name:",
+      fieldValue: "Abhishek Sairam Gaduputi"
     },
     {
-      fieldName:"Email:",
-      fieldValue:"abhi.gaduputi@gmail.com"
+      fieldName: "Email:",
+      fieldValue: "ag2936@njit.edu"
     },
     {
-      fieldName:"Languages:",
-      fieldValue:"English,Telugu,Hindi"
+      fieldName: "Phone:",
+      fieldValue: "+1 (908) 356-9089"
     },
     {
-      fieldName:"Hobbies:",
-      fieldValue:"Badminton,Guitar,Singing,Artworks"
-    },
-  ]
-};
-
-const experience={
-  icon:"/assests/resume/badge.svg",
-  title:"My experience",
-  description:"I worked as a Senior Executive in R&D division at the Montra Electric Tractor division, a subsidiary of TI Clean Mobility under the Murugappa Group. At Montra Electric, we focus on the development and manufacturing of electric vehicles, specifically pioneering advancements in electric tractor technology. This role has allowed me to contribute to sustainable mobility solutions and further develop my expertise in the autonomous electric vehicle domain. In FROKER, I have experience working with MongoDB for seamless data storage and retrieval, and I’ve built dynamic dashboards using Retool to monitor key performance metrics effectively. Additionally, I utilized Mixpanel and Google Analytics 4 to extract actionable insights through detailed reporting. I developed a recommendation engine designed to deliver real-time recommendations, enhancing user engagement. My work also extends to multi-modal large language models (LLMs), where I explored their capabilities to handle diverse data types for robust, scalable solutions.",
-  items:[
-    {
-      company:"Montra Electric Tractor R&D Division, TI clean mobility, Murugappa Groups",
-      position:"Senior Executive Research and Development",
-      duration:"November 2024 - July 2025 ",
+      fieldName: "Location:",
+      fieldValue: "New Jersey, United States"
     },
     {
-      company:"Froker",
-      position:"Machine Learning Engineer",
-      duration:"May 2024 - September 2024",
+      fieldName: "GitHub:",
+      fieldValue: "github.com/sairam782"
     },
     {
-      company:"Froker",
-      position:"Machine Learning Intern",
-      duration:"December 2023- April 2024",
-    },  
-  ]
-};
-
-const projects={
-  icon:"/assests/resume/badge.svg",
-  title:"Projects",
-  description:"I am a versatile tech enthusiast with practical experience in machine learning, IoT, and data visualization. My expertise lies in designing and optimizing machine learning models, developing end-to-end IoT applications, and creating meaningful visualizations to interpret complex datasets. I am driven by a passion for applying these skills to solve real-world challenges and deliver impactful solutions.",
-  items:[
-    { titleofproject:"Invisible Watermarking for Synthetic Images" },
-    { titleofproject:"ResNet–Vision Transformer for Deepfake Detection" },
-    { titleofproject:"Synthetic MRI Generation for Brain Tumor Classification" },
-    { titleofproject:"Hairstyle Recommendation System Using StyleGAN" },
-    { titleofproject:"Smart IoT-Based Precision Farm Management System" },
-  ]
-};
-
-const education={
-  icon:"/assests/resume/badge.svg",
-  title:"My education",
-  description:"I am currently pursuing my Master’s degree, building upon a strong and diverse educational foundation. Starting from primary and secondary schooling to my undergraduate studies at Manipal, I have developed a solid understanding of my field. In addition, I have expanded my expertise through specialized courses on platforms like Coursera, which have exposed me to emerging areas and new technologies. Each stage of my education has contributed to shaping a well-rounded perspective, fueling my passion for continuous learning, research, and innovation.",
-  items:[
-    {
-      institution:"New jersey Institute Of Technology ",
-      degree:"Masters in Artificial Intelligence",
-      duration:"2025-present",
+      fieldName: "LinkedIn:",
+      fieldValue: "linkedin.com/in/abhishek-sairam-gaduputi"
     },
     {
-      institution:"Manipal Institute Of Technology (MAHE)",
-      degree:"BTech in Electronics with minors in Data Science ",
-      duration:"2020-2024",
+      fieldName: "Languages:",
+      fieldValue: "English, Telugu, Hindi"
     },
     {
-      institution:"Narayana Groups",
-      degree:"Secondary Schooling",
-      duration:"2020",
-    },
-    {
-      institution:"Narayana Groups",
-      degree:"Primary Schooling",
-      duration:"2018",
+      fieldName: "Hobbies:",
+      fieldValue: "Badminton, Guitar, Singing, Artworks"
     },
   ]
 };
 
-const skills={
-  title:"My skills",
-  description:'Throughout my academic journey, I have gained expertise in various programming languages and frameworks, which have enhanced my problem-solving abilities and adaptability. My passion for technology and continuous learning has driven me to pursue courses and certifications that keep me updated with the latest trends and innovations in the field. This commitment to learning has shaped my skills, enabling me to tackle complex challenges and contribute effectively to any project or team.',
+const experience = {
+  icon: "/assests/resume/badge.svg",
+  title: "My experience",
+  description: "As a Senior Executive in the R&D division at Montra Electric Tractor, a subsidiary of TI Clean Mobility under the Murugappa Group, I fine tuned YOLOv11 and MiDaS models for an autonomous fertilizer spraying solution, designed and tested a Battery Management System, and proposed a 3 kW onboard charger for low grid regions. At Froker, Arroz Technologies, I built and deployed an end to end recommendation engine that increased user engagement by 37 percent and orders by 11 percent, built MongoDB data pipelines to power it, designed a multimodal content scoring pipeline using Microsoft AI Foundry APIs, and built interactive analytics dashboards with Retool, Mixpanel, and Google Analytics 4. As an Undergraduate Research Assistant at Manipal Institute of Technology, I designed and built an autonomous line following and obstacle avoiding robot with closed loop PID control and real time obstacle detection.",
+  items: [
+    {
+      company: "Montra Electric Tractor, TI Clean Mobility, Murugappa Group",
+      position: "Senior Executive, R&D",
+      duration: "November 2024 - July 2025",
+    },
+    {
+      company: "Froker, Arroz Technologies",
+      position: "Machine Learning Engineer",
+      duration: "May 2022 - October 2024",
+    },
+    {
+      company: "Manipal Institute of Technology",
+      position: "Undergraduate Research Assistant, Embedded Systems",
+      duration: "September 2021 - February 2022",
+    },
+  ]
+};
+
+const projects = {
+  icon: "/assests/resume/badge.svg",
+  title: "Projects",
+  description: "I am a versatile tech enthusiast with practical experience in machine learning, computer vision, and IoT. My work spans multi agent systems, generative modeling, and deep learning pipelines, driven by a passion for applying these skills to solve real world challenges.",
+  items: [
+    {
+      titleofproject: "Trinetra - Autonomous Incident Response Agent System",
+      link: "https://trinetra-mauve.vercel.app/",
+      description: "A multi agent autonomous incident response system with a tiered agent architecture and gated, dry run first remediation executor."
+    },
+    {
+      titleofproject: "GymCom - AI Powered Live Workout Form Coach",
+      link: "https://gymcom.vercel.app/live.html",
+      description: "A full stack workout analysis app combining browser side pose tracking with a FastAPI backend and Claude powered coaching reports."
+    },
+    {
+      titleofproject: "ResNet - Vision Transformer for Deepfake Detection",
+      description: "A hybrid Residual Network and Vision Transformer framework achieving up to 86 percent prediction accuracy on Celeb-DFv2."
+    },
+    {
+      titleofproject: "Synthetic MRI Generation for Brain Tumor Classification",
+      description: "A 2D Denoising Diffusion Model using MONAI to generate synthetic MRI slices, improving tumor detection accuracy from 82 to 88 percent."
+    },
+    {
+      titleofproject: "Smart IoT Based Precision Farm Management System",
+      description: "A real time IoT farm monitoring system with automated irrigation and MongoDB Atlas logging, achieving a 14 percent crop yield increase."
+    },
+  ]
+};
+
+const education = {
+  icon: "/assests/resume/badge.svg",
+  title: "My education",
+  description: "I am currently pursuing my Master's degree in Artificial Intelligence at NJIT, building upon a strong foundation from my undergraduate studies at Manipal Institute of Technology. Each stage of my education has shaped a well rounded perspective, fueling my passion for continuous learning, research, and innovation.",
+  items: [
+    {
+      institution: "New Jersey Institute of Technology",
+      degree: "Master of Science, Artificial Intelligence (GPA: 4.0/4.0)",
+      duration: "September 2025 - Present (Expected May 2027)",
+    },
+    {
+      institution: "Manipal Institute of Technology (MAHE)",
+      degree: "BTech, Electronics and Instrumentation, Minor in Data Science (CGPA: 8.08/10)",
+      duration: "September 2020 - June 2024",
+    },
+  ]
+};
+
+const skills = {
+  title: "My skills",
+  description: 'Throughout my academic and professional journey, I have gained expertise in various languages, frameworks, and tools spanning machine learning, data engineering, and analytics. This commitment to continuous learning has shaped my skills, enabling me to tackle complex challenges and contribute effectively to any project or team.',
   skillslist: [
-    { icon: <SiC />, name: "C" },    
+    { icon: <SiC />, name: "C" },
     { icon: <SiCplusplus />, name: "C++" },
     { icon: <FaPython />, name: "Python" },
     { icon: <SiMysql />, name: "SQL" },
+    { icon: <FaDatabase />, name: "NoSQL" },
+    { icon: <Network size={48} />, name: "Cypher / Neo4j" },
+    { icon: <BrainCircuit size={48} />, name: "TensorFlow" },
+    { icon: <Flame size={48} />, name: "PyTorch" },
+    { icon: <Sigma size={48} />, name: "Scikit-learn" },
+    { icon: <Table2 size={48} />, name: "Pandas" },
+    { icon: <Sigma size={48} />, name: "NumPy" },
     { icon: <SiMongodb />, name: "MongoDB" },
-    { icon: <SiDatabricks />, name: "NoSQL" }, // using Databricks as closest match
     { icon: <FaGitAlt />, name: "Git" },
     { icon: <FaGithub />, name: "GitHub" },
-    { icon: <SiTableau />, name: "Tableau" }
-    // { icon: <SiMicrosoft />, name: "Azure" }, // using Microsoft logo for Azure
+    { icon: <SiTableau />, name: "Tableau" },
+    { icon: <Cloud size={48} />, name: "Azure AI Foundry" },
   ]
 };
 
@@ -118,8 +151,8 @@ const DescriptionToggle = ({ text }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="flex flex-col items-center xl:items-start gap-2">
-      <Button 
-        variant="outline" 
+      <Button
+        variant="outline"
         className="w-fit"
         onClick={() => setOpen(!open)}
       >
@@ -144,9 +177,9 @@ const DescriptionToggle = ({ text }) => {
 
 const Resume = () => {
   return (
-    <motion.div 
-      initial={{opacity:0}} 
-      animate={{opacity:1,transition:{delay:2.4,duration:0.4,ease:"easeIn"}}}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { delay: 2.4, duration: 0.4, ease: "easeIn" } }}
       className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
     >
       <div className="container mx-auto">
@@ -160,7 +193,7 @@ const Resume = () => {
           </TabsList>
 
           <div className="min-h-[70vh] w-full">
-            
+
             {/* EXPERIENCE TAB */}
             <TabsContent value="experience" className="w-full mb-6">
               <div className='flex flex-col gap-[30px] text-center xl:text-left'>
@@ -168,7 +201,7 @@ const Resume = () => {
                 <DescriptionToggle text={experience.description} />
                 <ScrollArea className="h-[700px]">
                   <ul className='grid grid-cols-1 lg:grid-cols-1 gap-[30px]'>
-                    {experience.items.map((item,index)=>(
+                    {experience.items.map((item, index) => (
                       <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
                         <span className='text-accent'>{item.duration}</span>
                         <h3 className='text-xl max-w-[360px] min-h-[60px] text-center break-all lg:text-left text-white'>{item.position}</h3>
@@ -189,13 +222,32 @@ const Resume = () => {
                 <h3 className='text-4xl font-bold text-white'>{projects.title}</h3>
                 <DescriptionToggle text={projects.description} />
                 <ScrollArea className="h-[600px]">
-                  <div className='flex flex-col gap-[10px]'>
-                    {projects.items.map((item,index)=>(
-                      <li key={index} className='bg-[#232329] h-[100px] py-6 px-10 rounded-xl flex flex-col justify-left items-center lg:items-start gap-1'>
-                        <h3 className='text-xl max-w-[360px] min-h-[60px] text-center lg:text-left text-white'>{item.titleofproject}</h3>
+                  <ul className='flex flex-col gap-[10px]'>
+                    {projects.items.map((item, index) => (
+                      <li key={index} className='bg-[#232329] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-2'>
+                        {item.link ? (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className='flex items-center gap-2 text-xl max-w-[500px] text-center lg:text-left text-white hover:text-accent transition-colors duration-300 underline underline-offset-4'
+                          >
+                            {item.titleofproject}
+                            <ExternalLink className='w-4 h-4 shrink-0' />
+                          </a>
+                        ) : (
+                          <h3 className='text-xl max-w-[500px] text-center lg:text-left text-white'>
+                            {item.titleofproject}
+                          </h3>
+                        )}
+                        {item.description && (
+                          <p className='text-white/60 text-sm max-w-[500px] text-center lg:text-left'>
+                            {item.description}
+                          </p>
+                        )}
                       </li>
                     ))}
-                  </div>
+                  </ul>
                 </ScrollArea>
               </div>
             </TabsContent>
@@ -207,12 +259,12 @@ const Resume = () => {
                 <DescriptionToggle text={education.description} />
                 <ScrollArea className="h-[400px]">
                   <ul className='grid grid-cols-1 lg:grid-cols-2 gap-[30px]'>
-                    {education.items.map((item,index)=>(
-                      <li key={index} className='bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
+                    {education.items.map((item, index) => (
+                      <li key={index} className='bg-[#232329] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1'>
                         <span className='text-accent'>{item.duration}</span>
-                        <h3 className='text-xl max-w-[260px] min-h-[60px] text-center lg:text-left text-white'>{item.institution}</h3>
+                        <h3 className='text-xl max-w-[280px] min-h-[60px] text-center lg:text-left text-white'>{item.institution}</h3>
                         <div className='flex items-center gap-3'>
-                          <span className='w-[6px] h-[6px] rounded-full bg-accent'></span>
+                          <span className='w-[6px] h-[6px] rounded-full bg-accent shrink-0'></span>
                           <p className='text-white/60'>{item.degree}</p>
                         </div>
                       </li>
@@ -230,8 +282,8 @@ const Resume = () => {
                   <DescriptionToggle text={skills.description} />
                 </div>
                 <ScrollArea className="h-[600px]">
-                  <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]' >
-                    {skills.skillslist.map((skill,index)=>(
+                  <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]'>
+                    {skills.skillslist.map((skill, index) => (
                       <li key={index}>
                         <TooltipProvider delayDuration={100}>
                           <Tooltip>
@@ -254,11 +306,11 @@ const Resume = () => {
 
             {/* ABOUT TAB */}
             <TabsContent value="about" className="w-full text-center xl:text-left">
-              <div className='flex flex-col gap-[30px]' >
+              <div className='flex flex-col gap-[30px]'>
                 <h3 className='text-4xl font-bold text-white'>{about.title}</h3>
                 <p className='max-w-[600px] text-white/60 mx-auto xl:mx-0'>{about.description}</p>
                 <ul className='gap-y-6 max-w-[620px] mx-auto xl:mx-0'>
-                  {about.info.map((item,index)=>(
+                  {about.info.map((item, index) => (
                     <li key={index} className='flex items-center justify-center xl:justify-start gap-4'>
                       <span className='text-white/60'>{item.fieldName}</span>
                       <span className='text-xl'>{item.fieldValue}</span>
