@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+<<<<<<< Updated upstream
 const links=[
     {
         name:"Home",
@@ -19,8 +20,17 @@ const links=[
         name:"Contact",
         path:"/contact",
     },
+=======
+>>>>>>> Stashed changes
 
+const links = [
+  { name: "home", path: "/" },
+  { name: "resume", path: "/resume" },
+  // Startup section hidden for now
+  // { name: "startup", path: "/works" },
+  { name: "contact", path: "/contact" },
 ];
+<<<<<<< Updated upstream
 const Nav = () => {
     const pathname = usePathname();
     
@@ -38,10 +48,31 @@ const Nav = () => {
             } 
             rounded-full px-4 py-2 text-sm font-semibold transition-all`}
                 >
+=======
+>>>>>>> Stashed changes
 
-                {link.name}
-                </Link>);
-        })}
+const Nav = () => {
+  const pathname = usePathname();
+
+  return (
+    <nav className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1 backdrop-blur-xl">
+      {links.map((link, index) => {
+        const active = link.path === pathname;
+        return (
+          <Link
+            href={link.path}
+            key={index}
+            className={`relative px-4 py-1.5 text-sm capitalize transition-colors rounded-full ${
+              active ? "text-white" : "text-white/60 hover:text-white"
+            }`}
+          >
+            {active && (
+              <span className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/[0.1]" />
+            )}
+            <span className="relative">{link.name}</span>
+          </Link>
+        );
+      })}
     </nav>
   );
 };
