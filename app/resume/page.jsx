@@ -81,17 +81,17 @@ const projects = {
   description: "I am a versatile tech enthusiast with practical experience in machine learning, computer vision, and IoT. My work spans multi agent systems, generative modeling, and deep learning pipelines, driven by a passion for applying these skills to solve real world challenges.",
   items: [
     {
-      titleofproject: "Trinetra - Autonomous Incident Response Agent System",
+      titleofproject: "Trinetra : Autonomous Incident Response Agent System",
       link: "https://trinetra-mauve.vercel.app/",
       description: "A multi agent autonomous incident response system with a tiered agent architecture and gated, dry run first remediation executor."
     },
     {
-      titleofproject: "GymCom - AI Powered Live Workout Form Coach",
+      titleofproject: "GymCom : AI Powered Live Workout Form Coach",
       link: "https://gymcom.vercel.app/live.html",
       description: "A full stack workout analysis app combining browser side pose tracking with a FastAPI backend and Claude powered coaching reports."
     },
     {
-      titleofproject: "ResNet - Vision Transformer for Deepfake Detection",
+      titleofproject: "ResNet : Vision Transformer for Deepfake Detection",
       description: "A hybrid Residual Network and Vision Transformer framework achieving up to 86 percent prediction accuracy on Celeb-DFv2."
     },
     {
