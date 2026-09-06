@@ -299,7 +299,7 @@ export default function Home({ customCursor = true, motion = "full" }) {
         <header style={{ position: "sticky", top: "0", zIndex: "500", background: "rgba(242,240,234,0.86)", backdropFilter: "blur(10px)", borderBottom: "1px solid rgba(18,16,14,0.12)" }}>
           <div style={{ maxWidth: "1320px", margin: "0 auto", padding: "15px 44px", display: "flex", alignItems: "center", gap: "34px" }}>
             <a href="#top" data-magnet="" style={{ fontFamily: "'Bricolage Grotesque', system-ui, sans-serif", fontWeight: "800", fontSize: "21px", letterSpacing: "-0.03em", color: "#12100E", textDecoration: "none" }}>
-              A.S.G
+              abhi.ai
               <span style={{ color: "#C1121F" }}>/</span>
             </a>
             <nav style={{ display: "flex", gap: "26px", fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
