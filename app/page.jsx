@@ -311,7 +311,7 @@ export default function Home({ customCursor = true, motion = "full" }) {
             <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "16px" }}>
               <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11px", letterSpacing: "0.08em", color: "rgba(18,16,14,0.6)", display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ width: "7px", height: "7px", background: "#12c13e", borderRadius: "999px", animation: "blink 1.8s ease-in-out infinite" }}></span>
-                Avaiable
+                Available
               </span>
               <a className="hv5" href="#contact" data-magnet="" style={{ background: "#12100E", color: "#F2F0EA", textDecoration: "none", fontFamily: "'JetBrains Mono', monospace", fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", padding: "12px 22px", transition: "background 200ms ease" }}>Hire me</a>
             </div>
@@ -653,7 +653,7 @@ export default function Home({ customCursor = true, motion = "full" }) {
             </h2>
             <a className="hv9" href="mailto:ag2936@njit.edu" data-magnet="" style={{ display: "inline-block", fontFamily: "'Bricolage Grotesque', system-ui, sans-serif", fontWeight: "800", fontSize: "54px", letterSpacing: "-0.03em", color: "#F2F0EA", textDecoration: "none", borderBottom: "5px solid #12100E", paddingBottom: "8px", marginBottom: "56px", transition: "color 200ms ease" }}>ag2936@njit.edu</a>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "56px", alignItems: "start", borderTop: "2px solid rgba(242,240,234,0.3)", paddingTop: "44px" }}>
-              <form ref={formRef} onsubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+              <form ref={formRef} onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "11.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(242,240,234,0.75)" }}>Or write it here</div>
                 <input className="hv10" name="name" required placeholder="Your name" style={{ background: "transparent", border: "0", borderBottom: "2px solid rgba(242,240,234,0.45)", color: "#F2F0EA", fontFamily: "'Space Grotesk', sans-serif", fontSize: "17px", padding: "12px 0", outline: "none" }} />
                 <input className="hv11" name="email" type="email" required placeholder="Your email" style={{ background: "transparent", border: "0", borderBottom: "2px solid rgba(242,240,234,0.45)", color: "#F2F0EA", fontFamily: "'Space Grotesk', sans-serif", fontSize: "17px", padding: "12px 0", outline: "none" }} />
