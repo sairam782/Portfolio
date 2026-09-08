@@ -8,26 +8,26 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "abhi.gaduputi@gmail.com",
-    href: "mailto:abhi.gaduputi@gmail.com",
+    value: "ag2936@njit.edu",
+    href: "mailto:ag2936@njit.edu",
   },
   {
     icon: Phone,
     title: "Phone",
-    value: "+1 (908) 356-9089",
+    value: "+1 908 356 9089",
     href: "tel:+19083569089",
   },
   {
     icon: MapPin,
     title: "Location",
-    value: "Manalapan Township, New Jersey",
+    value: "Newark, New Jersey",
     href: null,
   },
   {
     icon: Linkedin,
     title: "LinkedIn",
     value: "abhishek-sairam-gaduputi",
-    href: "https://www.linkedin.com/in/abhishek-sairam-gaduputi-23899b175/",
+    href: "https://linkedin.com/in/abhishek-sairam-gaduputi",
   },
 ];
 
@@ -40,7 +40,7 @@ const Contact = () => {
   };
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText("abhi.gaduputi@gmail.com");
+    await navigator.clipboard.writeText("ag2936@njit.edu");
   };
 
   return (
