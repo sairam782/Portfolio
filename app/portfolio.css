@@ -4,6 +4,14 @@ html, body { margin: 0; padding: 0; background: #F2F0EA; }
 body { -webkit-font-smoothing: antialiased; }
 ::selection { background: #C1121F; color: #F2F0EA; }
 
+/* Keep the dark theme in globals.css from bleeding onto the light pages.
+   Scoped by :has() to the roots that portfolio.css owns (.asg-home, .asg-resume);
+   orphan routes without either class continue to render in the dark theme. */
+html:has(.asg-home), html:has(.asg-resume) { color-scheme: light; }
+body:has(.asg-home), body:has(.asg-resume) { background: #F2F0EA !important; color: #12100E; }
+body:has(.asg-home)::before, body:has(.asg-resume)::before { display: none !important; }
+body:has(.asg-home) ::selection, body:has(.asg-resume) ::selection { background: #C1121F; color: #F2F0EA; }
+
 .asg-home a, .asg-resume a { color: #C1121F; }
 .asg-home a:hover, .asg-resume a:hover { color: #12100E; }
 .asg-home, .asg-home * { cursor: none; }
