@@ -8,7 +8,7 @@ export function SectionHeading({ number, label, title, children }) {
 
 export function Experience({ full = false }) {
   return <section className="section shell" id="experience">
-    <SectionHeading number="02" label="The journey" title={<>Built in the field.<br /><em>Refined in the classroom.</em></>}>From consumer products to autonomous tractors. Now, helping the next generation build their foundations in computing.</SectionHeading>
+    <SectionHeading number="03" label="Experience" title={<>Different domains.<br /><em>The same drive to build.</em></>}>From consumer products to autonomous tractors. Now, helping the next generation build their foundations in computing.</SectionHeading>
     <div className="experience-list">{experience.map((job, index) => <article className="experience-row" key={job.company}>
       <div className="experience-meta"><span className="index">0{index + 1}</span><p>{job.dates}</p><span>{job.location}</span>{job.current && <span className="current-label"><i /> Current role</span>}</div>
       <div className="experience-body"><h3>{job.role}</h3><p className="company">{job.company}</p><p className="team">{job.team}</p>
@@ -30,8 +30,8 @@ export function Skills() {
 
 export function ContactSection() {
   return <section className="contact-section" id="contact"><div className="shell">
-    <div className="contact-top"><p className="eyebrow">Have a role, a project, or a good question?</p><span className="availability"><i /> Full-time opportunities · May 2027</span></div>
-    <h2>Let’s build<br />something <em>that matters.</em><ArrowUpRight className="contact-arrow" aria-hidden="true" /></h2>
+    <div className="contact-top"><p className="eyebrow">Have something in mind?</p><span className="availability"><i /> Full-time opportunities · May 2027</span></div>
+    <h2>Let’s build<br /><em>what’s next.</em><ArrowUpRight className="contact-arrow" aria-hidden="true" /></h2>
     <div className="contact-bottom"><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight size={25} /></a><div className="contact-socials"><a href={profile.github} target="_blank" rel="noopener noreferrer"><Github size={17} /> GitHub <ArrowUpRight size={14} /></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={17} /> LinkedIn <ArrowUpRight size={14} /></a><a href={profile.resume} download>Resume <ArrowDown size={16} /></a></div></div>
   </div></section>;
 }
