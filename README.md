@@ -1,40 +1,40 @@
-# Portfolio — Abhishek Sairam Gaduputi
+# Abhishek Sairam Gaduputi — Portfolio
 
-Personal portfolio of Abhishek Sairam Gaduputi. Machine learning engineer and applied scientist working across generative modeling, computer vision and multi agent systems.
+The current portfolio in this workspace is `Portfolio-1`. Built with Next.js 14 and React 18, with a responsive editorial design, project filters, expandable project descriptions, a career timeline, and a dedicated resume page.
 
-Live at [abhi.ai](https://github.com/sairam782/Portfolio) (deploy target).
-
-## Stack
-
-- [Next.js 14](https://nextjs.org/) (App Router)
-- React 18
-- Tailwind CSS 3
-- Framer Motion
-- Custom canvas motion (forward-pass neural net visualisation, magnetic buttons, scroll-driven horizontal track)
-
-## Routes
-
-| Path       | Contents                                                |
-| ---------- | ------------------------------------------------------- |
-| `/`        | Homepage — hero, live neural network, selected work, experience, contact |
-| `/resume`  | Full resume view                                        |
-
-## Local development
+## Run locally
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-## Build
+Open http://localhost:3000. To check and run a production build:
 
 ```bash
 npm run build
-npm run start
+npm start
 ```
+
+## Update content
+
+- `lib/portfolio.js` is the shared source for contact information, work experience, projects, education, and skills.
+- `app/page.jsx` contains the homepage introduction and impact highlights.
+- `app/portfolio.css` contains the responsive design and print styles.
+- `public/assets/resume/Abhi_Gaduputi_Resume.pdf` is the current resume download. Keep `public/assets/resume/cv.pdf` synchronized for existing download links.
+
+The October 2026 update follows the supplied resume, including the NJIT Teaching Assistant role, Montra Electric Tractor, Froker, and Manipal research experience. Availability is May 2027.
+
+## Routes
+
+- `/`: portfolio, projects, experience, education, skills, and contact
+- `/resume`: full experience and downloadable PDF
+- `/works`: project gallery
+- `/contact`: contact information
+- `/services`: redirects to the homepage toolkit
+
+Contact links open email or the linked professional profiles. No contact form backend or external font request is required. Motion respects reduced-motion preferences, and navigation and project details support keyboard interaction.
 
 ## Deployment
 
-Optimised for [Vercel](https://vercel.com/). The production branch is `main`; the `exp` branch preserves earlier versions of the site.
+The production branch is `main`, with Vercel as the deployment target. Keep deployment configuration pointed at this Next.js project. The `exp` branch retains the original portfolio update history.
