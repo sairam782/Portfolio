@@ -1,43 +1,41 @@
-# Abhishek Sairam Gaduputi — Portfolio
+# Abhishek Sairam Gaduputi — portfolio
 
-The current portfolio in this workspace is `Portfolio-1`. Built with Next.js 14 and React 18, with a responsive ivory interface with charcoal text and terracotta accents, an interactive neural concept explorer, project filters, a hackathon build log, a career timeline, and a dedicated resume page.
+A Next.js portfolio for machine learning projects, hackathons, experience, and contact information. The dark split layout is adapted from the user's selected [v0 reference](https://v0.app/templates/portfolio-template-v0-X6XcPALhbJD). See `docs/design-reference.md` for provenance.
 
-## Run locally
+## Local development
 
-```bash
+```sh
 npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. To check and run a production build:
+For a production preview:
 
-```bash
+```sh
 npm run build
-npm start
+npm run start -- --hostname 127.0.0.1 --port 3000
 ```
 
-## Update content
+## Content and implementation
 
-- `lib/portfolio.js` is the shared source for contact information, work experience, projects, education, and skills.
-- `app/page.jsx` contains the homepage introduction and impact highlights.
-- `lib/hackathons.js` contains verified hackathon submissions; `docs/hackathon-sources.md` records the evidence and LinkedIn access limits.
-- `components/NeuralLab.jsx` is a lightweight, interactive visualization of AI concepts, not a live model or performance dashboard.
-- `app/portfolio.css` contains the responsive design and print styles.
-- `public/assets/resume/Abhi_Gaduputi_Resume.pdf` is the current resume download. Keep `public/assets/resume/cv.pdf` synchronized for existing download links.
+- `lib/portfolio.js`: verified profile, career, education, project, and skill content.
+- `lib/hackathons.js`: seven hackathon entries, source links, and demos.
+- `components/studio/`: split-layout shell, spring-driven project artwork, accessible project dialogs, searchable hackathon journal, resume, and contact.
+- `app/portfolio.css`: responsive design, animation, reduced-motion, and print styles.
+- `public/assets/resume/Abhi_Gaduputi_Resume.pdf`: downloadable resume.
+- `docs/hackathon-sources.md`: source verification notes.
 
-The October 2026 update follows the supplied resume, including the NJIT Teaching Assistant role, Montra Electric Tractor, Froker, and Manipal research experience. Availability is May 2027.
+The site uses React/Next.js, Framer Motion, Radix Dialog, and CSS/SVG. No PHP, account system, contact-form backend, or simulated live product metrics are used. Email links open the visitor's email client; the copy button provides clipboard feedback. All external project links are preserved.
 
 ## Routes
 
-- `/`: portfolio, projects, experience, education, skills, and contact
-- `/resume`: full experience and downloadable PDF
-- `/works`: project gallery
-- `/hackathons`: five verified public project submissions, with event and project links
-- `/contact`: contact information
-- `/services`: redirects to the homepage toolkit
+- `/`: personal introduction, career highlights, education, focus areas, recognition, and contact
+- `/works`: selected work and interactive project details
+- `/hackathons`: all builds, text/technology search, demo and award filters
+- `/resume`: experience, education, and toolkit
+- `/contact`: about, email, and social links
+- `/services` → `/contact`
 
-Contact links open email or the linked professional profiles. No contact form backend or external font request is required. Motion respects reduced-motion preferences, and navigation and project details support keyboard interaction.
+## Local backups
 
-## Deployment
-
-The production branch is `main`, with Vercel as the deployment target. Keep deployment configuration pointed at this Next.js project. The `exp` branch retains the original portfolio update history.
+Before the October 24 rebuild, the original source (`237a782`), last committed version (`811b063`), and complete pre-rebuild working source were saved alongside this checkout in `../portfolio-backups/2026-10-24-before-template-rebuild/`. That folder also contains a Git history bundle and restore instructions. Backups are local and are not published with the website.

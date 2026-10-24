@@ -1,15 +1,12 @@
 import "./globals.css";
 import "./portfolio.css";
-import PortfolioNav from "@/components/PortfolioNav";
-import { Footer } from "@/components/PortfolioSections";
+import StudioShell from "@/components/studio/StudioShell";
 
 export const metadata = {
   title: { default: "Abhishek Sairam Gaduputi | ML & AI Engineer", template: "%s | Abhishek Sairam Gaduputi" },
-  description: "Machine learning engineer with 3+ years building production AI. Explore agentic systems, computer vision, generative models, and hackathon builds. NJIT MS AI, available May 2027.",
-  keywords: ["Abhishek Sairam Gaduputi", "Machine Learning Engineer", "AI Engineer", "Computer Vision", "Agentic AI", "NJIT"],
-  openGraph: { title: "Abhishek Sairam Gaduputi | ML & AI Engineer", description: "Building AI beyond the prototype. Production machine learning, agentic systems, computer vision, and hackathon builds.", type: "website" },
+  description: "Machine learning engineer building agentic systems, computer vision, and production AI. Explore Abhishek’s projects, seven hackathon builds, and experience.",
+  openGraph: { title: "Abhishek Sairam Gaduputi | ML & AI Engineer", description: "From a curious idea to something that works. Selected projects in AI and machine learning.", type: "website" },
 };
-
 export default function RootLayout({ children }) {
-  return <html lang="en"><body><a className="skip-link" href="#main">Skip to content</a><PortfolioNav /><main id="main">{children}</main><Footer /></body></html>;
+  return <html lang="en"><body><StudioShell>{children}</StudioShell></body></html>;
 }

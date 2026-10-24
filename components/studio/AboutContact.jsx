@@ -1,0 +1,13 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { ArrowUpRight, Copy, Check } from "lucide-react";
+import { profile } from "@/lib/portfolio";
+
+export default function AboutContact() {
+ const [status,setStatus]=useState('');
+ const timer=useRef(null);
+ useEffect(()=>()=>clearTimeout(timer.current),[]);
+ async function copy(){clearTimeout(timer.current);try{await navigator.clipboard.writeText(profile.email);setStatus('copied');}catch{setStatus('error');}timer.current=setTimeout(()=>setStatus(''),4500);}
+ return <><header className="feed-header"><span className="overline"><span className="tiny-star">✳</span> The person behind the projects</span><span className="feed-meta">New Jersey, US</span></header><section className="about-hero"><div className="portrait-wrap"><Image src="/assets/portrait.jpg" alt="Abhishek Sairam Gaduputi" width={680} height={760} priority/><span className="portrait-label">Engineer. Researcher. Always learning.</span></div><div className="about-copy"><p className="overline">A little about me</p><h2>Curiosity is<br/><span>the constant.</span></h2><p>I’m Abhishek, a machine learning engineer and MS Artificial Intelligence student at NJIT. I like the space between an interesting idea and a system someone can actually use.</p><p>That has taken me from recommender systems at Froker to computer vision for autonomous electric tractors at Montra. Today, I’m exploring agentic systems, studying AI, and supporting computing students as a teaching assistant.</p><p>Outside the code: guitar, a new idea, and probably the next hackathon.</p></div></section><section className="contact-panel"><span className="availability"><i/> Full-time opportunities · May 2027</span><h2>Good things start<br/>with a <span>hello.</span></h2><p>Have a role, a project, or an interesting problem?<br/>I’d love to hear about it.</p><div className="email-row"><a href={`mailto:${profile.email}`}>{profile.email}<ArrowUpRight size={25}/></a><button onClick={copy} className="copy-button" aria-label={status==='copied'?'Email copied':'Copy email address'}>{status==='copied'?<Check size={19}/>:<Copy size={19}/>}</button></div><p className="copy-status" role="status">{status==='copied'?'Email copied to clipboard.':status==='error'?`Copy unavailable. Please copy ${profile.email} manually.`:''}</p><div className="contact-links"><a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight size={18}/></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={18}/></a><a href={profile.resume} download>Resume <ArrowUpRight size={18}/></a></div></section></>;
+}

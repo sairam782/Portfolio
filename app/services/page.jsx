@@ -1,2 +1,2 @@
 import { redirect } from "next/navigation";
-export default function Services() { redirect("/#toolkit"); }
+export default function Page(){redirect('/contact');}
