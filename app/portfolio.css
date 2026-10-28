@@ -929,7 +929,7 @@ main:focus {
   padding: 55px 27px 36px;
 }
 
-.page-intro h2 {
+.page-intro :is(h1,h2) {
   font-size: clamp(40px,4.3vw,72px);
   font-weight: 650;
   letter-spacing: -.06em;
@@ -937,7 +937,7 @@ main:focus {
   margin: 20px 0;
 }
 
-.page-intro h2 span {
+.page-intro :is(h1,h2) span {
   color: #878391;
 }
 
@@ -1091,7 +1091,7 @@ main:focus {
   flex-wrap: wrap;
 }
 
-.build-title-row h3 {
+.build-title-row :is(h2,h3) {
   font-size: 31px;
   line-height: 1.1;
   letter-spacing: -.05em;
@@ -1437,14 +1437,14 @@ main:focus {
   padding: 35px;
 }
 
-.about-copy h2 {
+.about-copy :is(h1,h2) {
   font-size: 52px;
   letter-spacing: -.055em;
   line-height: 1.05;
   margin: 18px 0 25px;
 }
 
-.about-copy h2 span {
+.about-copy :is(h1,h2) span {
   color: #8e859b;
 }
 
@@ -1746,7 +1746,7 @@ main:focus {
     font-size: 32px;
     min-width: 36px;
   }
-  .build-title-row h3 {
+  .build-title-row :is(h2,h3) {
     font-size: 27px;
   }
   .filter-buttons button {
@@ -1850,10 +1850,10 @@ main:focus {
   .page-intro {
     padding: 35px 20px;
   }
-  .page-intro h2 {
+  .page-intro :is(h1,h2) {
     font-size: 56px;
   }
-  .about-copy h2 {
+  .about-copy :is(h1,h2) {
     font-size: 49px;
   }
   .contact-panel h2 {
@@ -2080,7 +2080,7 @@ main:focus {
   .page-intro>.overline {
     font-size: 8px;
   }
-  .page-intro h2 {
+  .page-intro :is(h1,h2) {
     font-size: clamp(35px,10vw,51px);
     margin-top: 18px;
   }
@@ -2137,7 +2137,7 @@ main:focus {
     min-width: 31px;
     padding-top: 2px;
   }
-  .build-title-row h3 {
+  .build-title-row :is(h2,h3) {
     font-size: 28px;
   }
   .build-event {
@@ -2227,7 +2227,7 @@ main:focus {
   .about-copy {
     padding: 27px 24px;
   }
-  .about-copy h2 {
+  .about-copy :is(h1,h2) {
     font-size: 43px;
   }
   .about-copy>p:not(.overline) {
@@ -2296,7 +2296,7 @@ main:focus {
     color: black;
     break-inside: avoid;
   }
-  .career-card p,.career-card h2,.career-card li,.education-card p,.education-card h3,.education-card strong,.overline,.career-stats span,.page-intro h2 span {
+  .career-card p,.career-card h2,.career-card li,.education-card p,.education-card h3,.education-card strong,.overline,.career-stats span,.page-intro :is(h1,h2) span {
     color: #333;
   }
   .page-intro {
@@ -3370,4 +3370,29 @@ main:focus {
     margin: 20px 0 0;
     font-size: 12px;
   }
+}
+
+/* Review refinements: retain the visual design while improving navigation. */
+.career-card[id], .education-section[id], .skills-section[id] { scroll-margin-top: 24px; }
+.project-toolbar { padding: 8px 7px 24px; }
+.project-toolbar .work-filters { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+.project-toolbar .work-filters button { min-height: 44px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; }
+.project-toolbar .work-filters button[aria-pressed=true] { background: #24202e; border-color: #76658f; }
+.project-toolbar > p { color: #a2a2ad; font-size: 12px; margin-top: 12px; }
+.social-controls { gap: 4px; }
+.social-controls a, .social-controls button { min-width: 32px; min-height: 32px; align-items: center; justify-content: center; }
+@media (pointer: coarse) { .social-controls a, .social-controls button { min-width: 44px; min-height: 44px; } }
+.filter-buttons button { min-height: 44px; font-size: 11px; }
+.plain-tags button { min-height: 32px; font-size: 11px; }
+.build-search input::placeholder { color: #a29aaa; opacity: 1; }
+.build-location { color: #aaa3b7; font-size: 10px; }
+@media (max-width: 600px) {
+  .identity-footer { flex-wrap: wrap; gap: 8px; }
+  .filter-row { flex-wrap: wrap; gap: 12px; }
+  .studio-nav a { min-height: 44px; font-size: 11px; }
+}
+@media (max-width: 600px) {
+  .personal-hero { max-height: none; }
+  .hero-portrait { position: relative; top: auto; right: auto; align-self: flex-end; flex-shrink: 0; margin: 24px 8px 40px; }
+  .personal-hero-bottom { padding-top: 0; }
 }

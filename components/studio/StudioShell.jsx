@@ -14,7 +14,6 @@ const links = [{ href: "/", label: "Overview", count: "01" }, { href: "/resume",
 export default function StudioShell({ children }) {
   const pathname = usePathname();
   const reduced = useReducedMotion();
-  const NameHeading = pathname === "/" ? "h2" : "h1";
   const [paused, setPaused] = useState(false);
   const animated = !reduced && !paused;
   return <MotionSettings.Provider value={animated}><MotionConfig reducedMotion={animated ? "user" : "always"}>
@@ -22,7 +21,7 @@ export default function StudioShell({ children }) {
       <a className="skip-link" href="#main">Skip to content</a>
       <aside className="identity-panel">
         <div className="identity-top"><Link href="/" className="wordmark" aria-label="Abhishek, home">abhishek<span className="name-dot" /></Link><span className="identity-location">NJ, USA</span></div>
-        <div className="identity-intro"><p className="overline">Machine learning engineer</p><NameHeading className="identity-name">Abhishek <span>Sairam <br/>Gaduputi.</span></NameHeading><p className="bio">Engineer. Researcher. Always building.<br/>Turning curiosity into AI systems that work in the real world.</p><p className="identity-study">MS Artificial Intelligence <span>↗</span> NJIT</p></div>
+        <div className="identity-intro"><p className="overline">Machine learning engineer</p><p className="identity-name">Abhishek <span>Sairam <br/>Gaduputi.</span></p><p className="bio">Engineer. Researcher. Always building.<br/>Turning curiosity into AI systems that work in the real world.</p><p className="identity-study">MS Artificial Intelligence <span>↗</span> NJIT</p></div>
         <div className="identity-cta"><a className="pill-button primary" href={`mailto:${profile.email}`}>Let’s talk <ArrowUpRight size={17} /></a><a className="resume-link" href={profile.resume} download>Resume <Download size={15}/></a></div>
         <nav className="studio-nav" aria-label="Portfolio sections">{links.map(link => <Link key={link.href} href={`${link.href}#main`} aria-current={pathname === link.href ? "page" : undefined}><span>{link.label}</span><span className="nav-count">{link.count}</span><ArrowRight className="nav-arrow" size={15}/></Link>)}</nav>
         <div className="company-strip"><p className="overline">Where I’ve built & learned</p><div><span className="company-njit">NJIT</span><span className="company-montra">MONTRA<span> ELECTRIC</span></span><span className="company-froker">froker.</span></div></div>

@@ -39,3 +39,7 @@ The site uses React/Next.js, Framer Motion, Radix Dialog, and CSS/SVG. No PHP, a
 ## Local backups
 
 Before the October 24 rebuild, the original source (`237a782`), last committed version (`811b063`), and complete pre-rebuild working source were saved alongside this checkout in `../portfolio-backups/2026-10-24-before-template-rebuild/`. That folder also contains a Git history bundle and restore instructions. Backups are local and are not published with the website.
+
+## Maintenance
+
+The October 28 review upgraded Next.js and React and patched transitive dependencies. `package.json` deliberately overrides Next's PostCSS dependency to `8.5.32`; retain this until an upgraded Next version no longer pins the vulnerable release. See `docs/quality-review-2026-10-28.md` for changes and validation.
