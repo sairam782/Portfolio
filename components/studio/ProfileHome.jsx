@@ -10,8 +10,8 @@ export default function ProfileHome() {
     <section className="personal-hero" aria-labelledby="profile-heading">
       <div className="personal-aura" aria-hidden="true"><div/><div/><div/></div>
       <div className="personal-hero-top"><span className="availability"><i/> Open to opportunities · May 2027</span><span className="hero-location"><MapPin size={12}/> New Jersey, US</span></div>
-      <div className="personal-heading"><p className="overline">Hello, I’m</p><h1 id="profile-heading">Abhishek <span>Sairam </span><span>Gaduputi<span className="hero-period">.</span></span></h1></div>
-      <div className="hero-portrait"><Image src="/assets/portrait.jpg" alt="Abhishek Sairam Gaduputi" width={360} height={440} priority/><div className="portrait-frame" aria-hidden="true"/><span>Curious by default.</span></div>
+      <div className="personal-identity"><div className="personal-heading"><p className="overline">Hello, I’m</p><h1 id="profile-heading">Abhishek <span>Sairam </span><span>Gaduputi<span className="hero-period">.</span></span></h1></div>
+      <div className="hero-portrait"><div className="portrait-image"><Image src="/assets/portrait.jpg" alt="Abhishek Sairam Gaduputi" width={360} height={440} sizes="(max-width: 600px) 136px, (max-width: 900px) 26vw, 18vw" priority/><div className="portrait-frame" aria-hidden="true"/></div><span>Curious by default.</span></div></div>
       <div className="personal-hero-bottom"><p className="hero-role">Machine Learning & AI Engineer</p><p className="hero-intro">I turn research into useful software. From recommendation engines and autonomous tractors to AI agents that reason.</p><div className="hero-actions"><Link href="/resume#main" className="pill-button primary">My experience <ArrowUpRight size={16}/></Link><a href={profile.resume} download className="hero-resume"><Download size={15}/> Download resume</a></div></div>
       <span className="hero-edition" aria-hidden="true">A PERSONAL PORTFOLIO / 2026</span>
     </section>

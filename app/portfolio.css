@@ -3396,3 +3396,54 @@ main:focus {
   .hero-portrait { position: relative; top: auto; right: auto; align-self: flex-end; flex-shrink: 0; margin: 24px 8px 40px; }
   .personal-hero-bottom { padding-top: 0; }
 }
+
+/* Align the portrait with the introduction in a shared, responsive row. */
+.personal-identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28%;
+  align-items: center;
+  gap: 24px;
+  margin-top: 49px;
+}
+.personal-identity .personal-heading { margin-top: 0; }
+.personal-identity .hero-portrait {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  transform: none;
+  opacity: 1;
+}
+.portrait-image { position: relative; aspect-ratio: 4 / 5; }
+.personal-identity .hero-portrait img {
+  display: block;
+  height: 100%;
+  border-radius: 22px;
+  opacity: 1;
+  object-position: 50% 35%;
+  transition: filter .4s ease, border-color .4s ease;
+}
+.personal-identity .portrait-frame { inset: -6px; border-radius: 28px; }
+.personal-identity .hero-portrait > span { margin-top: 20px; line-height: 1.5; }
+@keyframes introduction-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-motion=on] .personal-heading { animation: introduction-enter .65s .08s both; }
+  [data-motion=on] .hero-portrait { animation: introduction-enter .7s .18s both; }
+  [data-motion=on] .personal-hero-bottom { animation: introduction-enter .7s .28s both; }
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-motion=on] .hero-portrait:hover img { filter: grayscale(.35); border-color: #b9a0ff; }
+}
+@media (max-width: 900px) {
+  .personal-identity { grid-template-columns: minmax(0, 1fr) 26%; margin-top: 50px; }
+}
+@media (max-width: 600px) {
+  .personal-identity { grid-template-columns: 1fr; gap: 30px; margin-top: 41px; }
+  .personal-identity .hero-portrait { width: 136px; justify-self: start; }
+  .personal-identity .hero-portrait > span { font-size: 9px; }
+  .personal-hero-bottom { margin-top: 32px; }
+}
