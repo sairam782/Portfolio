@@ -1,45 +1,75 @@
-# Abhishek Sairam Gaduputi — portfolio
+# Abhishek Sairam Gaduputi: portfolio
 
-A Next.js portfolio for machine learning projects, hackathons, experience, and contact information. The dark split layout is adapted from the user's selected [v0 reference](https://v0.app/templates/portfolio-template-v0-X6XcPALhbJD). See `docs/design-reference.md` for provenance.
+A Next.js site that presents my machine learning work the way a company launches a product: a cinematic hero, measured results, case studies, and an easy way to get in touch.
 
-## Local development
+Live: https://abhishek-drab-two-45.vercel.app
+
+## Run it
 
 ```sh
 npm ci
-npm run dev
+npm run dev        # http://localhost:3000
 ```
 
-For a production preview:
+Production check:
 
 ```sh
+npm run lint
 npm run build
-npm run start -- --hostname 127.0.0.1 --port 3000
+npm run start
 ```
 
-## Content and implementation
+## Where things live
 
-- `lib/portfolio.js`: verified profile, career, education, project, and skill content.
-- `lib/hackathons.js`: seven hackathon entries, source links, and demos.
-- `components/studio/`: split-layout shell, spring-driven project artwork, accessible project dialogs, searchable hackathon journal, resume, and contact.
-- `app/portfolio.css`: responsive design, animation, reduced-motion, and print styles.
-- `public/assets/resume/Abhi_Gaduputi_Resume.pdf`: downloadable resume.
-- `docs/hackathon-sources.md`: source verification notes.
+| Path | What it holds |
+| --- | --- |
+| `lib/site.js` | Name, links, email, resume path, navigation, site URL, optional hero video |
+| `lib/work.js` | Case studies and the "What I work on" areas |
+| `lib/experience.js` | Work history, education, skills |
+| `lib/hackathons.js` | Hackathon builds with source links |
+| `app/` | Routes, global styles, fonts, SEO files |
+| `components/` | Header, footer, command palette, cards, project illustrations |
+| `components/home/` | Home page sections: hero, results grid, work rail, focus areas |
+| `components/fx/` | Motion building blocks: shader background, smooth scroll, reveals, counters, spotlight, marquee |
+| `public/assets/` | Portrait and resume PDF |
+| `docs/` | Design notes and source verification for hackathon entries |
 
-The site uses React/Next.js, Framer Motion, Radix Dialog, and CSS/SVG. No PHP, account system, contact-form backend, or simulated live product metrics are used. Email links open the visitor's email client; the copy button provides clipboard feedback. All external project links are preserved.
+To update content, edit the files in `lib/`. Pages read from them, so nothing else needs to change.
 
 ## Routes
 
-- `/`: personal introduction, career highlights, education, focus areas, recognition, and contact
-- `/works`: selected work and interactive project details
-- `/hackathons`: all builds, text/technology search, demo and award filters
-- `/resume`: experience, education, and toolkit
-- `/contact`: about, email, and social links
-- `/services` → `/contact`
+- `/` home: pitch, results, focus areas, case studies, hackathons, about
+- `/work` and `/work/[slug]`: six case studies
+- `/experience`: work history, education, skills
+- `/hackathons`: searchable list of builds
+- `/about`, `/contact`
+- Old routes redirect: `/works` to `/work`, `/resume` to `/experience`, `/services` to `/contact`
 
-## Local backups
+## Motion and interaction
 
-Before the October 24 rebuild, the original source (`237a782`), last committed version (`811b063`), and complete pre-rebuild working source were saved alongside this checkout in `../portfolio-backups/2026-10-24-before-template-rebuild/`. That folder also contains a Git history bundle and restore instructions. Backups are local and are not published with the website.
+- Hero background: a WebGL shader of slow ribbons of light that leans toward the cursor. It pauses off screen. To use a video instead, set `heroVideo` in `lib/site.js`.
+- Smooth scrolling (Lenis) on desktop. Touch devices keep native scroll.
+- Scroll-driven sections: a statement that lights up word by word, a pinned horizontal rail of case studies, and focus-area cards that stack.
+- Cards follow the cursor with a spotlight and a slight tilt. Primary buttons are magnetic. Numbers count up when they enter the view.
+- Quick search with Cmd+K or Ctrl+K: pages, case studies, hackathon builds, and actions such as copying the email address.
+- Animated illustrations for each case study, drawn in SVG.
+- Everything respects the reduced-motion setting: animations stop, pinned sections become normal ones, and marquees become plain lists.
 
-## Maintenance
+## Production details
 
-The October 28 review upgraded Next.js and React and patched transitive dependencies. `package.json` deliberately overrides Next's PostCSS dependency to `8.5.32`; retain this until an upgraded Next version no longer pins the vulnerable release. See `docs/quality-review-2026-10-28.md` for changes and validation.
+- Every page is statically generated.
+- SEO: per-page titles and descriptions, canonical URLs, `sitemap.xml`, `robots.txt`, a generated social share image, and JSON-LD for the person and each case study.
+- Security headers and redirects are set in `next.config.mjs`.
+- Fonts (Geist and Geist Mono, SIL Open Font License) are self-hosted in `app/fonts`, so builds do not depend on a font CDN.
+- Accessible by default: skip link, visible focus, labelled navigation, keyboard-operable search, and an automated axe scan with no violations on any page.
+- Runtime dependencies: Next.js, React, Motion, Lenis, and Lucide icons.
+
+## Configuration
+
+Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain. It feeds canonical URLs, the sitemap, and share cards. Without it, the current Vercel URL is used.
+
+## Content rules
+
+Every number on the site comes from the resume or a public project source. `docs/hackathon-sources.md` records where each hackathon entry was verified. Keep that standard when adding work.
+
+`package.json` pins two transitive dependencies to patched versions (PostCSS under Next, minimatch under the lint tooling). `npm audit` reports 0 vulnerabilities with them in place. Remove each override once the parent package ships a fixed release.
