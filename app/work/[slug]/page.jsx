@@ -124,6 +124,13 @@ export default async function CaseStudyPage({ params }) {
           </div>
         </Reveal>
 
+        {study.insight && (
+          <Reveal as="section" className="study" aria-labelledby="insight">
+            <h2 id="insight">Why it is interesting</h2>
+            <p className="study-quote">{study.insight}</p>
+          </Reveal>
+        )}
+
         <Reveal as="section" className="study" aria-labelledby="built">
           <h2 id="built">What I built</h2>
           <ul className="bullets">

@@ -16,7 +16,7 @@ export default function HackathonsPage() {
     <>
       <PageHead
         title="Hackathons"
-        lead={`${numberWord(hackathons.length)} builds in 2026, across New York, New Jersey, and online build weeks. Every entry links to its public submission or post.`}
+        lead={`${numberWord(hackathons.length)} working AI prototypes in 2026, built with teams under deadline in New York, New Jersey, and online. Every entry links to its public submission or post.`}
       />
 
       <section className="section section--flush">

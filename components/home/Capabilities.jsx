@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import CaseVisual from "@/components/CaseVisual";
 import useStill from "@/components/fx/useStill";
 
-const art = ["trinetra", "montra-autonomous-spraying", "froker-recommendation-engine"];
+const art = ["trinetra", "montra-autonomous-spraying", "froker-recommendation-engine", "gymcom"];
 
 function Card({ cap, index, total, progress, still }) {
   // Earlier cards shrink and darken slightly as later ones slide over them.
@@ -38,7 +38,7 @@ function Card({ cap, index, total, progress, still }) {
   );
 }
 
-// Three focus areas as cards that stack while you scroll.
+// Technical capabilities as cards that stack while you scroll.
 export default function Capabilities({ capabilities }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.2", "end 0.9"] });

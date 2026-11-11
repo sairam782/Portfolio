@@ -41,8 +41,8 @@ export default function WorkRail({ studies }) {
       <div className="rail-sticky">
         <div className="wrap rail-head">
           <div>
-            <h2 id="work-heading">Selected work</h2>
-            <p>Two from industry, four from my own projects and research.</p>
+            <h2 id="work-heading">Systems I have built</h2>
+            <p>Six case studies. Each shows the problem, the architecture, and the result.</p>
           </div>
           <div className="rail-meta">
             <span className="rail-count tnum" aria-hidden="true">

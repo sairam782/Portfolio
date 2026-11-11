@@ -43,6 +43,20 @@ Type is Geist for everything and Geist Mono for small labels. Headings are weigh
 - Every animation has a reduced-motion fallback.
 - The case study illustrations show how each system works. They are drawings, not screenshots.
 
+## Copy
+
+The wording follows what 2026 hiring data says employers screen for: production ownership, evaluation, and agent systems, shown through measured results. The rules:
+
+- The headline says what I build. The first paragraph names the three system types and the years of experience.
+- Each case study leads with the outcome, then the problem, one line on why it is technically interesting, what I built, and the result.
+- Tools are named where they did the work (YOLOv11, MiDaS, MCP, FastAPI, MongoDB), not in a separate list of logos.
+- A short core stack sits above the full skills list.
+- No claim without a source in the resume or a public project page.
+
+## Portrait
+
+`public/assets/portrait-cutout.webp` is the original photo with the background removed. `components/PortraitStage.jsx` places it in front of the site's light with three fact chips. The layers shift with the cursor.
+
 ## Hero video
 
 `heroVideo` in `lib/site.js` swaps the shader for a looping video. Keep the clip dark, slow, and free of text, 8 to 10 seconds, under about 3 MB, and export both MP4 (H.264) and WebM plus a poster image.

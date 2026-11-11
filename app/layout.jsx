@@ -12,7 +12,7 @@ const mono = localFont({ src: "./fonts/GeistMono-latin.woff2", variable: "--font
 
 const title = `${profile.name} | ${profile.role}`;
 const description =
-  "Machine learning engineer with 3+ years shipping models into products: recommendation systems, computer vision for autonomous tractors, and LLM agent systems. MS in Artificial Intelligence at NJIT. Open to full-time roles from May 2027.";
+  "ML and AI engineer with 3+ years shipping models into products: a recommendation engine that lifted engagement 37%, computer vision for an autonomous tractor, and multi-agent LLM systems. MS in AI at NJIT. Open to full-time roles from May 2027.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,7 +21,7 @@ export const metadata = {
   applicationName: profile.name,
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
-  keywords: ["Machine learning engineer", "AI engineer", "Computer vision", "Recommender systems", "LLM agents", "NJIT", profile.name],
+  keywords: ["Machine learning engineer", "AI engineer", "LLM agents", "Agentic AI", "Model evaluation", "Computer vision", "Recommender systems", "PyTorch", "MLOps", "NJIT", profile.name],
   alternates: { canonical: "/" },
   openGraph: { type: "website", url: siteUrl, siteName: profile.name, title, description, locale: "en_US" },
   twitter: { card: "summary_large_image", title, description },
@@ -47,7 +47,7 @@ const personSchema = {
     { "@type": "CollegeOrUniversity", name: "New Jersey Institute of Technology" },
     { "@type": "CollegeOrUniversity", name: "Manipal Institute of Technology" },
   ],
-  knowsAbout: ["Machine learning", "Computer vision", "Recommender systems", "LLM agents", "Generative models"],
+  knowsAbout: ["Machine learning", "Agentic AI", "LLM agents", "Computer vision", "Recommender systems", "Diffusion models", "Model evaluation", "MLOps"],
   sameAs: [profile.github, profile.linkedin, profile.devpost],
 };
 

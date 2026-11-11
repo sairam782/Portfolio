@@ -24,14 +24,14 @@ npm run start
 | Path | What it holds |
 | --- | --- |
 | `lib/site.js` | Name, links, email, resume path, navigation, site URL, optional hero video |
-| `lib/work.js` | Case studies and the "What I work on" areas |
+| `lib/work.js` | Case studies, technical capabilities, and the "How I build" principles |
 | `lib/experience.js` | Work history, education, skills |
 | `lib/hackathons.js` | Hackathon builds with source links |
 | `app/` | Routes, global styles, fonts, SEO files |
 | `components/` | Header, footer, command palette, cards, project illustrations |
 | `components/home/` | Home page sections: hero, results grid, work rail, focus areas |
 | `components/fx/` | Motion building blocks: shader background, smooth scroll, reveals, counters, spotlight, marquee |
-| `public/assets/` | Portrait and resume PDF |
+| `public/assets/` | Portrait (original and background-removed cut-out) and resume PDF |
 | `docs/` | Design notes and source verification for hackathon entries |
 
 To update content, edit the files in `lib/`. Pages read from them, so nothing else needs to change.

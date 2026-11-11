@@ -6,7 +6,7 @@ import SectionHead from "@/components/SectionHead";
 import ProgressLine from "@/components/fx/ProgressLine";
 import Spotlight from "@/components/fx/Spotlight";
 import { Reveal } from "@/components/fx/Reveal";
-import { experience, education, skills } from "@/lib/experience";
+import { experience, education, skills, coreStack } from "@/lib/experience";
 import { profile } from "@/lib/site";
 
 export const metadata = {
@@ -21,7 +21,7 @@ export default function ExperiencePage() {
     <>
       <PageHead
         title="Experience"
-        lead="Three years building machine learning products in industry, then graduate study in AI. The same facts are in the resume if you prefer one page."
+        lead="3+ years shipping machine learning in industry, then graduate work in AI. Recommenders, computer vision, embedded systems, and agents. The resume has the same facts on one page."
       >
         <div className="actions">
           <a className="btn btn--light" href={profile.resume} download>
@@ -99,8 +99,18 @@ export default function ExperiencePage() {
 
       <section className="section section--flush" id="skills" aria-labelledby="skills-heading">
         <div className="wrap">
-          <SectionHead id="skills-heading" title="Skills" />
+          <SectionHead id="skills-heading" title="Skills" lead="The first row is what I reach for most. The rest I have used in shipped or published work." />
           <dl className="skills">
+            <Reveal className="skills-core">
+              <dt>Core stack</dt>
+              <dd>
+                <ul className="tags tags--strong">
+                  {coreStack.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </dd>
+            </Reveal>
             {skills.map((group, i) => (
               <Reveal key={group.title} delay={i * 0.06}>
                 <dt>{group.title}</dt>

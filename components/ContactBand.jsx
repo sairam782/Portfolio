@@ -10,12 +10,12 @@ export default function ContactBand() {
       <div className="cta-glow" aria-hidden="true" />
       <div className="wrap">
         <h2 id="cta-heading">
-          <Words text="Hiring for ML or AI?" />
+          <Words text="Need an engineer who ships AI?" />
           <br />
           <Line text="Let's talk." className="grad" delay={0.25} />
         </h2>
         <Reveal delay={0.4}>
-          <p>I am looking for full-time work starting May 2027. Email is the fastest way to reach me.</p>
+          <p>I am open to full-time ML and AI engineering roles from May 2027. Email is the fastest way to reach me.</p>
         </Reveal>
         <Reveal delay={0.5}>
           <div className="actions actions--center">

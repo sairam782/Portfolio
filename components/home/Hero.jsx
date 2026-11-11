@@ -32,16 +32,15 @@ export default function Hero() {
         </Reveal>
 
         <h1 id="hero-heading">
-          <Words text="Machine learning" delay={0.1} />
+          <Words text="I build AI systems" delay={0.1} />
           <br />
-          <Line text="that ships." delay={0.35} className="grad" />
+          <Line text="that ship." delay={0.4} className="grad" />
         </h1>
 
         <Reveal delay={0.55}>
           <p className="hero-lead">
-            I am {profile.firstName}. I spent three years taking models from experiment to production: a recommendation
-            engine at Froker, vision for autonomous electric tractors at Montra, and now agent systems with
-            guardrails.
+            I am {profile.firstName}, an ML and AI engineer. I build recommendation engines, computer vision models, and
+            LLM agent systems, and I own them from data pipeline to deployment. 3+ years in industry.
           </p>
         </Reveal>
 
@@ -49,7 +48,7 @@ export default function Hero() {
           <div className="actions actions--center">
             <Magnetic>
               <Link className="btn btn--light btn--lg" href="/work">
-                See the work
+                See what I have built
               </Link>
             </Magnetic>
             <Magnetic>

@@ -20,8 +20,8 @@ export default async function OpenGraphImage() {
           {profile.name}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 124, lineHeight: 0.98, letterSpacing: -6 }}>Machine learning</div>
-          <div style={{ fontSize: 124, lineHeight: 1.1, letterSpacing: -6, color: "#c4b5fd" }}>that ships.</div>
+          <div style={{ fontSize: 124, lineHeight: 0.98, letterSpacing: -6 }}>I build AI systems</div>
+          <div style={{ fontSize: 124, lineHeight: 1.1, letterSpacing: -6, color: "#c4b5fd" }}>that ship.</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 28, color: "#f5f5f7" }}>
           <div>{profile.role}</div>

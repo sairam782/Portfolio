@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Trophy } from "lucide-react";
 import Hero from "@/components/home/Hero";
@@ -9,22 +8,30 @@ import ContactBand from "@/components/ContactBand";
 import SectionHead from "@/components/SectionHead";
 import ScrollText from "@/components/fx/ScrollText";
 import Marquee from "@/components/fx/Marquee";
-import Parallax from "@/components/fx/Parallax";
+import PortraitStage from "@/components/PortraitStage";
+import Spotlight from "@/components/fx/Spotlight";
 import { Reveal } from "@/components/fx/Reveal";
 import { profile } from "@/lib/site";
-import { caseStudies, capabilities } from "@/lib/work";
+import { caseStudies, capabilities, principles } from "@/lib/work";
 import { skills } from "@/lib/experience";
 import { hackathons } from "@/lib/hackathons";
 import { numberWord } from "@/lib/format";
 
 const story =
-  "For three years I took models from experiment to production. A recommendation engine that lifted engagement by 37 percent. Vision models that let an electric tractor spray on its own. Today I build agent systems with guardrails, and study artificial intelligence at NJIT.";
+  "A recommendation engine that lifted engagement 37 percent. Vision models that cut system cost by up to 21 percent on an autonomous tractor. AI agents that fix incidents, but only through a safety gate and an audit trail. I build machine learning that holds up with real users, real hardware, and real budgets.";
+
+const chips = [
+  { value: "3+ years", label: "shipping ML in industry" },
+  { value: "4.0 GPA", label: "MS in AI, NJIT" },
+  { value: "May 2027", label: "open to full-time roles" },
+];
 
 export default function Home() {
   const awarded = hackathons.find((item) => item.award);
   const count = numberWord(hackathons.length);
   const tools = skills.flatMap((group) => group.items);
   const half = Math.ceil(tools.length / 2);
+  const demos = numberWord(hackathons.filter((item) => item.demo).length);
 
   return (
     <>
@@ -38,7 +45,7 @@ export default function Home() {
 
       <section className="section" aria-labelledby="results-heading">
         <div className="wrap">
-          <SectionHead id="results-heading" title="Results with a number on them" lead="Each tile opens the work behind it." />
+          <SectionHead id="results-heading" title="Impact, in numbers" lead="Every figure comes from shipped work or a documented evaluation. Each tile opens the story behind it." />
           <Bento hackathonCount={hackathons.length} />
         </div>
       </section>
@@ -47,7 +54,7 @@ export default function Home() {
 
       <section className="section" aria-labelledby="caps-heading">
         <div className="wrap">
-          <SectionHead id="caps-heading" title="What I work on" lead="Three areas, each with shipped or published work behind it." />
+          <SectionHead id="caps-heading" title="Technical capabilities" lead="Four areas where I have shipped or published work. The proof is linked on each card." />
           <Capabilities capabilities={capabilities} />
         </div>
         <div className="tools" aria-label="Tools I work with">
@@ -56,12 +63,31 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" aria-labelledby="how-heading">
+        <div className="wrap">
+          <SectionHead id="how-heading" title="How I build" lead="Three habits that show up in every project." />
+          <div className="principles">
+            {principles.map((item, i) => (
+              <Reveal key={item.title} delay={i * 0.08}>
+                <Spotlight as="article" className="principle">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <Link className="text-link" href={item.link.href}>
+                    See it in {item.link.label}
+                  </Link>
+                </Spotlight>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section" aria-labelledby="hack-heading">
         <div className="wrap">
           <SectionHead
             id="hack-heading"
-            title={`${count} hackathon builds in 2026`}
-            lead="Healthcare, fintech, productivity, and developer tools. Each was built in a day, a weekend, or a build week."
+            title={`${count} AI prototypes in one year`}
+            lead={`Built with teams at hackathons, in a day, a weekend, or a build week. Healthcare, fintech, productivity, and developer tools. ${demos} have live demos.`}
           >
             <Link className="btn btn--glass" href="/hackathons">
               All hackathon builds
@@ -107,29 +133,29 @@ export default function Home() {
 
       <section className="section" aria-labelledby="about-heading">
         <div className="wrap about-teaser">
-          <Reveal className="portrait">
-            <Parallax amount={28}>
-              <Image src="/assets/portrait.jpg" alt={`Portrait of ${profile.name}`} width={687} height={770} sizes="(max-width: 860px) 70vw, 420px" />
-            </Parallax>
+          <Reveal>
+            <PortraitStage chips={chips} />
           </Reveal>
           <div>
             <Reveal as="h2" id="about-heading">
-              Engineer first, researcher close behind.
+              From circuit boards to agent systems.
             </Reveal>
             <Reveal delay={0.1}>
               <p>
-                I am pursuing an MS in Artificial Intelligence at NJIT with a 4.0 GPA, and I help teach computing
-                fundamentals there as a teaching assistant. My first degree is in electronics and instrumentation, so I
-                tend to measure before I claim.
+                I started in electronics and instrumentation, building robots and battery systems. Then I spent three
+                years shipping machine learning at a consumer startup and an electric vehicle maker.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
-              <p>I like problems where an idea has to hold up in the real world, with real users and real constraints.</p>
+              <p>
+                Now I am pursuing an MS in Artificial Intelligence at NJIT with a 4.0 GPA, and I help teach two
+                computing courses there. That path taught me to measure first and claim second.
+              </p>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="actions">
                 <Link className="btn btn--light" href="/about">
-                  About me
+                  More about me
                 </Link>
                 <Link className="btn btn--glass" href="/experience">
                   Full experience

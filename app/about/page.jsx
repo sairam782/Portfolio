@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import ContactBand from "@/components/ContactBand";
 import PageHead from "@/components/PageHead";
-import Parallax from "@/components/fx/Parallax";
+import PortraitStage from "@/components/PortraitStage";
 import ScrollText from "@/components/fx/ScrollText";
 import { Reveal } from "@/components/fx/Reveal";
 import { education } from "@/lib/experience";
@@ -41,15 +40,13 @@ const facts = [
 export default function AboutPage() {
   return (
     <>
-      <PageHead title="About" lead="Machine learning engineer, graduate student, and teaching assistant in New Jersey." />
+      <PageHead title="About" lead="ML and AI engineer, graduate researcher, and teaching assistant, based in New Jersey." />
 
       <section className="section section--flush">
         <div className="wrap about-grid">
           <aside className="about-side">
-            <Reveal className="portrait">
-              <Parallax amount={20}>
-                <Image src="/assets/portrait.jpg" alt={`Portrait of ${profile.name}`} width={687} height={770} sizes="(max-width: 860px) 70vw, 380px" priority />
-              </Parallax>
+            <Reveal>
+              <PortraitStage priority sizes="(max-width: 860px) 86vw, 380px" />
             </Reveal>
             <Reveal delay={0.1}>
               <dl className="fact-list">
@@ -64,19 +61,25 @@ export default function AboutPage() {
           </aside>
 
           <div className="prose">
-            <ScrollText className="scroll-text--sm" text="I am Abhishek. I like the space between an interesting idea and a system someone can actually use." />
+            <ScrollText className="scroll-text--sm" text="I like the space between an interesting idea and a system someone can actually use. Most of my work lives there." />
             <Reveal>
               <p>
-                That has taken me from recommender systems at Froker to computer vision for autonomous electric tractors
-                at Montra. Today I am exploring agent systems and generative models while I study for an MS in Artificial
-                Intelligence at NJIT, and I support computing students there as a teaching assistant.
+                At Froker I built the recommendation engine behind the feed, along with the data pipelines and
+                dashboards around it. At Montra Electric I fine-tuned detection and depth models for an autonomous
+                tractor and worked on its battery system.
+              </p>
+            </Reveal>
+            <Reveal>
+              <p>
+                Today I build multi-agent LLM systems and study generative models in the MS in Artificial Intelligence
+                program at NJIT, where I am also a teaching assistant.
               </p>
             </Reveal>
             <Reveal>
               <p>
                 My first degree is in electronics and instrumentation, with a minor in data science. I have designed and
-                tested a battery management system and soldered my share of boards, and that background still shapes how
-                I work on models: measure first, then claim.
+                tested a battery management system and soldered my share of boards. That background still shapes how I
+                work on models: measure first, then claim.
               </p>
             </Reveal>
 

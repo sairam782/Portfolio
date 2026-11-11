@@ -27,7 +27,7 @@ const links = [
 export default function ContactPage() {
   return (
     <>
-      <PageHead title="Get in touch" lead="Have a role, a project, or an interesting problem? I would like to hear about it." />
+      <PageHead title="Get in touch" lead="Hiring for ML or AI engineering, or have a hard problem that needs a model in production? I would like to hear about it." />
 
       <section className="section section--flush">
         <div className="wrap">

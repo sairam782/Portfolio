@@ -30,7 +30,7 @@ export default function Bento({ hackathonCount }) {
         <p className="tile-number tile-number--xl grad">
           <Counter to={37} prefix="+" suffix="%" />
         </p>
-        <p className="tile-text">more user engagement after the engine went live, and 11% more orders.</p>
+        <p className="tile-text">more user engagement from a recommendation engine I built end to end. Orders rose 11%.</p>
         <svg className="tile-chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="bento-line" x1="0" x2="1">
@@ -74,7 +74,7 @@ export default function Bento({ hackathonCount }) {
           <span className="tile-to"> to </span>
           <Counter to={21} suffix="%" />
         </p>
-        <p className="tile-text">lower system cost. Camera models replaced heavy sensor hardware.</p>
+        <p className="tile-text">lower system cost. YOLOv11 and MiDaS replaced heavy sensor hardware.</p>
       </Tile>
 
       <Tile href="/work/montra-autonomous-spraying" delay={0.12}>
@@ -82,7 +82,7 @@ export default function Bento({ hackathonCount }) {
         <p className="tile-number">
           <Counter to={23} suffix=" min" />
         </p>
-        <p className="tile-text">faster 0 to 80% charge.</p>
+        <p className="tile-text">faster 0 to 80% charge, from battery management system design and testing.</p>
         <div className="battery" aria-hidden="true">
           <motion.i initial={{ width: "8%" }} whileInView={{ width: "80%" }} viewport={view} transition={{ duration: 2.2, ease, delay: 0.3 }} />
         </div>
@@ -94,7 +94,7 @@ export default function Bento({ hackathonCount }) {
           82<span className="tile-to"> to </span>
           <Counter from={82} to={88} suffix="%" />
         </p>
-        <p className="tile-text">tumor detection accuracy with diffusion-generated training slices.</p>
+        <p className="tile-text">tumor detection accuracy, lifted by training on diffusion-generated MRI.</p>
         <div className="bars" aria-hidden="true">
           <motion.i initial={{ scaleY: 0 }} whileInView={{ scaleY: 0.82 }} viewport={view} transition={{ duration: 1.2, ease }} />
           <motion.i initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={view} transition={{ duration: 1.5, ease, delay: 0.25 }} />
@@ -106,7 +106,7 @@ export default function Bento({ hackathonCount }) {
         <p className="tile-number">
           <Counter to={86} suffix="%" />
         </p>
-        <p className="tile-text">accuracy on Celeb-DF v2 with a hybrid ResNet and ViT.</p>
+        <p className="tile-text">deepfake detection accuracy on Celeb-DF v2, with a hybrid ResNet and ViT.</p>
         <svg className="ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="8" />
           <motion.circle
@@ -127,11 +127,11 @@ export default function Bento({ hackathonCount }) {
       </Tile>
 
       <Tile href="/experience#education" delay={0.24}>
-        <p className="tile-label">NJIT, MS in Artificial Intelligence</p>
+        <p className="tile-label">NJIT, graduate school</p>
         <p className="tile-number">
           <Counter to={4} decimals={1} />
         </p>
-        <p className="tile-text">GPA out of 4.0. Graduating May 2027.</p>
+        <p className="tile-text">GPA in the MS in Artificial Intelligence. Graduating May 2027.</p>
       </Tile>
 
       <Tile href="/hackathons" className="bento-cell--wide" delay={0.28}>
@@ -139,7 +139,7 @@ export default function Bento({ hackathonCount }) {
         <p className="tile-number">
           <Counter to={hackathonCount} />
         </p>
-        <p className="tile-text">builds across healthcare, fintech, and developer tools. One Honourable Mention.</p>
+        <p className="tile-text">working AI prototypes built at hackathons this year, across healthcare, fintech, and developer tools. One Honourable Mention.</p>
       </Tile>
     </div>
   );

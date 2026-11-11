@@ -15,6 +15,8 @@ export default function Spotlight({ as: Tag = "div", tilt = false, className = "
     const py = (event.clientY - box.top) / box.height;
     el.style.setProperty("--mx", `${px * 100}%`);
     el.style.setProperty("--my", `${py * 100}%`);
+    el.style.setProperty("--px", (px - 0.5).toFixed(3));
+    el.style.setProperty("--py", (py - 0.5).toFixed(3));
     if (tilt) {
       el.style.setProperty("--rx", `${(0.5 - py) * 5}deg`);
       el.style.setProperty("--ry", `${(px - 0.5) * 6}deg`);
@@ -26,6 +28,8 @@ export default function Spotlight({ as: Tag = "div", tilt = false, className = "
     if (!el) return;
     el.style.setProperty("--rx", "0deg");
     el.style.setProperty("--ry", "0deg");
+    el.style.setProperty("--px", "0");
+    el.style.setProperty("--py", "0");
   }
 
   return (
