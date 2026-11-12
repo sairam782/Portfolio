@@ -239,11 +239,55 @@ function Face({ id }) {
   );
 }
 
+/* RL skin cancer triage: a reward matrix on the left, the agent's three actions on the right. */
+function Triage({ id }) {
+  const cells = [];
+  for (let row = 0; row < 7; row++) {
+    for (let col = 0; col < 7; col++) cells.push([row, col]);
+  }
+  return (
+    <>
+      <circle cx="200" cy="150" r="160" fill={`url(#${id}-glow)`} opacity="0.4" />
+      {/* reward matrix: the melanoma row carries the largest rewards and penalties */}
+      {cells.map(([row, col]) => {
+        const mel = row === 4;
+        const hit = row === col;
+        return (
+          <rect
+            key={`${row}-${col}`}
+            className={mel ? "cv-patch" : undefined}
+            x={44 + col * 25}
+            y={62 + row * 25}
+            width="21"
+            height="21"
+            rx="5"
+            fill={mel || hit ? `url(#${id}-g)` : soft}
+            opacity={mel ? 1 : hit ? 0.55 : 1}
+            stroke={mel || hit ? "none" : line}
+            style={mel ? { "--d": `${col * 0.18}s` } : undefined}
+          />
+        );
+      })}
+      <path d="M226 150 H258" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeDasharray="3 5" className="cv-attn" />
+      {/* Q-values for dismiss, treat, excise */}
+      <path d="M266 238 H366" stroke={line} />
+      {[0, 1, 2].map((n) => (
+        <g key={n}>
+          <rect x={274 + n * 32} y="78" width="20" height="160" rx="6" fill={soft} />
+          <rect className={`cv-q cv-q--${n}`} x={274 + n * 32} y="78" width="20" height="160" rx="6" fill={n === 2 ? `url(#${id}-g)` : "rgba(255,255,255,0.3)"} />
+        </g>
+      ))}
+      <circle className="cv-pick" cx="348" cy="60" r="5" fill="#fff" />
+    </>
+  );
+}
+
 const visuals = {
   "froker-recommendation-engine": Recommender,
   "montra-autonomous-spraying": Vision,
   trinetra: Agents,
   gymcom: Pose,
+  "rl-skin-cancer": Triage,
   "synthetic-mri-generation": Diffusion,
   "deepfake-detection": Face,
 };

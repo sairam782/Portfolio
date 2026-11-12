@@ -3,11 +3,12 @@ import ContactBand from "@/components/ContactBand";
 import PageHead from "@/components/PageHead";
 import { Reveal } from "@/components/fx/Reveal";
 import { caseStudies } from "@/lib/work";
+import { numberWord } from "@/lib/format";
 
 export const metadata = {
   title: "Work",
   description:
-    "Six ML and AI case studies: a recommendation engine that lifted engagement 37%, vision models for an autonomous tractor, a multi-agent incident response system, and research in diffusion models and deepfake detection.",
+    "ML and AI case studies: a recommendation engine that lifted engagement 37%, vision models for an autonomous tractor, a multi-agent incident response system, and research in reinforcement learning, diffusion models, and deepfake detection.",
   alternates: { canonical: "/work" },
 };
 
@@ -19,7 +20,7 @@ export default function WorkPage() {
 
   return (
     <>
-      <PageHead title="Work" lead="Six systems, from production recommenders to research models. Each case study shows the problem, the architecture, and the measured result." />
+      <PageHead title="Work" lead={`${numberWord(caseStudies.length)} systems, from production recommenders to research models. Each case study shows the problem, the architecture, and the measured result.`} />
 
       <section className="section section--flush">
         <div className="wrap">

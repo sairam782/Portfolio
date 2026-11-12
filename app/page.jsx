@@ -20,12 +20,6 @@ import { numberWord } from "@/lib/format";
 const story =
   "A recommendation engine that lifted engagement 37 percent. Vision models that cut system cost by up to 21 percent on an autonomous tractor. AI agents that fix incidents, but only through a safety gate and an audit trail. I build machine learning that holds up with real users, real hardware, and real budgets.";
 
-const chips = [
-  { value: "3+ years", label: "shipping ML in industry" },
-  { value: "4.0 GPA", label: "MS in AI, NJIT" },
-  { value: "May 2027", label: "open to full-time roles" },
-];
-
 export default function Home() {
   const awarded = hackathons.find((item) => item.award);
   const count = numberWord(hackathons.length);
@@ -134,7 +128,7 @@ export default function Home() {
       <section className="section" aria-labelledby="about-heading">
         <div className="wrap about-teaser">
           <Reveal>
-            <PortraitStage chips={chips} />
+            <PortraitStage />
           </Reveal>
           <div>
             <Reveal as="h2" id="about-heading">

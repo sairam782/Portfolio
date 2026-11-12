@@ -46,7 +46,7 @@ export default function AboutPage() {
         <div className="wrap about-grid">
           <aside className="about-side">
             <Reveal>
-              <PortraitStage priority sizes="(max-width: 860px) 86vw, 380px" />
+              <PortraitStage priority />
             </Reveal>
             <Reveal delay={0.1}>
               <dl className="fact-list">

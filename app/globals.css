@@ -1572,6 +1572,86 @@ main,
   .cv-sweep {
     animation: sweep 4s ease-in-out infinite;
   }
+
+  .cv-q {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: q-low 5s ease-in-out infinite;
+  }
+
+  .cv-q--1 {
+    animation-name: q-mid;
+  }
+
+  .cv-q--2 {
+    animation-name: q-high;
+  }
+
+  .cv-pick {
+    animation: pick 5s ease-in-out infinite;
+  }
+}
+
+/* resting heights, also the reduced-motion state */
+.cv-q {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transform: scaleY(0.3);
+}
+
+.cv-q--1 {
+  transform: scaleY(0.45);
+}
+
+.cv-q--2 {
+  transform: scaleY(0.9);
+}
+
+@keyframes q-low {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+  45%,
+  80% {
+    transform: scaleY(0.22);
+  }
+}
+
+@keyframes q-mid {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+  45%,
+  80% {
+    transform: scaleY(0.5);
+  }
+}
+
+@keyframes q-high {
+  0%,
+  100% {
+    transform: scaleY(0.3);
+  }
+  45%,
+  80% {
+    transform: scaleY(0.94);
+  }
+}
+
+@keyframes pick {
+  0%,
+  35%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  50%,
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes rank-up {
@@ -2016,138 +2096,73 @@ main,
 
 .about-teaser {
   display: grid;
-  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
   gap: clamp(32px, 7vw, 110px);
   align-items: center;
 }
 
-/* portrait stage: the cut-out photo in front of the light, with parallax layers */
+/* portrait: studio look. Neutral dark backdrop, monochrome at rest, colour on hover. */
 
-.stage {
-  --px: 0;
-  --py: 0;
-  position: relative;
-  aspect-ratio: 10 / 11.4;
+.portrait {
   margin: 0;
+}
+
+.portrait-frame {
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
-  background: radial-gradient(120% 90% at 50% 100%, #15131d 0%, #060608 70%);
+  /* a soft backdrop light behind the head, like a studio wall */
+  background: radial-gradient(90% 62% at 50% 30%, #303037 0%, #1a1a1f 46%, #0b0b0d 100%);
   isolation: isolate;
 }
 
-.stage-glow {
+.portrait-img {
   position: absolute;
-  left: 50%;
-  top: 46%;
-  z-index: -1;
-  width: 92%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: conic-gradient(from 200deg, var(--blue), var(--violet), var(--pink), var(--amber), var(--blue));
-  filter: blur(56px);
-  opacity: 0.6;
-  translate: calc(-50% + var(--px) * -34px) calc(-50% + var(--py) * -26px);
-  animation: spin 22s linear infinite;
-}
-
-.stage-rings {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: radial-gradient(circle at 50% 46%, transparent 0 27%, rgba(255, 255, 255, 0.09) 27.2% 27.5%, transparent 27.7% 39%, rgba(255, 255, 255, 0.06) 39.2% 39.5%, transparent 39.7% 52%, rgba(255, 255, 255, 0.04) 52.2% 52.5%, transparent 52.7%);
-}
-
-.stage-photo {
-  position: absolute;
-  inset: 4% -6% 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  translate: calc(var(--px) * 12px) calc(var(--py) * 8px);
-  transition: translate 0.5s var(--ease);
-  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
-}
-
-.stage-photo img {
-  width: 100%;
-  height: 100%;
-  /* anchored to the top so the hair is never cropped; the bottom fades out anyway */
+  left: -3%;
+  top: 8%;
+  width: 106%;
+  max-width: none;
+  height: 92%;
+  /* anchored to the top so the hair is never cropped */
   object-fit: cover;
   object-position: 50% 0%;
-  filter: contrast(1.04) saturate(0.92) drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6));
+  filter: grayscale(1) contrast(1.08) brightness(1.03);
+  transform-origin: 50% 30%;
+  transition: filter 0.9s var(--ease), transform 1.4s var(--ease);
 }
 
-.stage-chip {
+.portrait-frame:hover .portrait-img {
+  filter: grayscale(0) contrast(1.02) brightness(1);
+  transform: scale(1.025);
+}
+
+.portrait-shade {
   position: absolute;
-  z-index: 2;
+  inset: 0;
+  /* a cool key light from the left, a vignette, and a floor fade */
+  background: linear-gradient(115deg, rgba(125, 176, 255, 0.16) 0%, transparent 42%), radial-gradient(120% 95% at 50% 22%, transparent 52%, rgba(0, 0, 0, 0.5) 100%),
+    linear-gradient(180deg, transparent 66%, rgba(8, 8, 10, 0.82) 100%);
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+
+.portrait figcaption {
   display: flex;
   flex-direction: column;
-  padding: 10px 14px;
-  border: 1px solid var(--line-strong);
-  border-radius: 14px;
-  background: rgba(14, 14, 18, 0.62);
-  backdrop-filter: blur(16px);
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.35;
-  white-space: nowrap;
-  translate: calc(var(--px) * 26px) calc(var(--py) * 20px);
-  transition: translate 0.6s var(--ease);
-  animation: float 6s ease-in-out infinite;
+  gap: 2px;
+  margin-top: 16px;
 }
 
-.stage-chip b {
-  color: #fff;
+.portrait figcaption strong {
   font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.stage-chip--1 {
-  left: 5%;
-  top: 9%;
-}
-
-.stage-chip--2 {
-  right: 5%;
-  top: 30%;
-  animation-delay: -2s;
-}
-
-.stage-chip--3 {
-  left: 5%;
-  bottom: 21%;
-  animation-delay: -4s;
-}
-
-@keyframes float {
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.stage-name {
-  position: absolute;
-  inset: auto 0 0 0;
-  z-index: 2;
-  padding: 18px 22px;
-  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.85) 60%);
-}
-
-.stage-name strong {
-  display: block;
-  font-size: 1.0625rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.stage-name span {
-  display: block;
+.portrait figcaption span {
   color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.9375rem;
 }
 
 .about-teaser p {
@@ -2167,7 +2182,7 @@ main,
     grid-template-columns: 1fr;
   }
 
-  .about-teaser .stage {
+  .about-teaser .portrait {
     max-width: 420px;
   }
 }
@@ -3157,7 +3172,7 @@ main,
     position: static;
   }
 
-  .about-side .stage {
+  .about-side .portrait {
     max-width: 380px;
   }
 }

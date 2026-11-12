@@ -39,7 +39,7 @@ To update content, edit the files in `lib/`. Pages read from them, so nothing el
 ## Routes
 
 - `/` home: pitch, results, focus areas, case studies, hackathons, about
-- `/work` and `/work/[slug]`: six case studies
+- `/work` and `/work/[slug]`: the case studies
 - `/experience`: work history, education, skills
 - `/hackathons`: searchable list of builds
 - `/about`, `/contact`

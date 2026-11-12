@@ -55,7 +55,7 @@ The wording follows what 2026 hiring data says employers screen for: production 
 
 ## Portrait
 
-`public/assets/portrait-cutout.webp` is the original photo with the background removed. `components/PortraitStage.jsx` places it in front of the site's light with three fact chips. The layers shift with the cursor.
+`public/assets/portrait-cutout.webp` is the original photo with the background removed, the red edge from the old wall cleaned off, and the colour banding on the suit removed. `components/PortraitStage.jsx` shows it the way company leadership pages do: a 4:5 chest-up crop on a neutral dark studio backdrop, monochrome at rest and in colour on hover, with the name as a plain caption under the frame. Nothing is drawn on top of the photo.
 
 ## Hero video
 

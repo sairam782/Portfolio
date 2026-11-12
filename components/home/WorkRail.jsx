@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/rea
 import { ArrowUpRight } from "lucide-react";
 import CaseVisual from "@/components/CaseVisual";
 import Spotlight from "@/components/fx/Spotlight";
+import { numberWord } from "@/lib/format";
 
 // Case studies on a horizontal rail. On desktop the section pins and vertical
 // scrolling drives the rail sideways. On touch screens and for reduced-motion
@@ -42,7 +43,7 @@ export default function WorkRail({ studies }) {
         <div className="wrap rail-head">
           <div>
             <h2 id="work-heading">Systems I have built</h2>
-            <p>Six case studies. Each shows the problem, the architecture, and the result.</p>
+            <p>{numberWord(studies.length)} case studies. Each shows the problem, the architecture, and the result.</p>
           </div>
           <div className="rail-meta">
             <span className="rail-count tnum" aria-hidden="true">
