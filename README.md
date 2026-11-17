@@ -25,6 +25,7 @@ npm run start
 | --- | --- |
 | `lib/site.js` | Name, links, email, resume path, navigation, site URL, colour theme, optional hero video |
 | `lib/themes.js` | The colour themes. Pick the default in `lib/site.js` |
+| `lib/voice.js` | Settings and limits for the voice guide. See `docs/voice-guide.md` |
 | `lib/work.js` | Case studies, technical capabilities, and the "How I build" principles |
 | `lib/experience.js` | Work history, education, skills |
 | `lib/hackathons.js` | Hackathon builds with source links |
@@ -56,16 +57,27 @@ To update content, edit the files in `lib/`. Pages read from them, so nothing el
 - Animated illustrations for each case study, drawn in SVG.
 - Everything respects the reduced-motion setting: animations stop, pinned sections become normal ones, and marquees become plain lists.
 
+## Voice guide
+
+An AI guide answers questions about the work by voice or text. It is an ElevenLabs agent built from the site data, with guardrails at every layer and its own test set. Setup, guardrails and costs are in `docs/voice-guide.md`.
+
+```bash
+npm run voice:sync   # build or update the agent from lib/
+npm run voice:test   # 12 guardrail checks
+```
+
 ## Production details
 
-- Every page is statically generated.
+- Every page is statically generated. The one server route hands out session passes for the voice guide.
 - SEO: per-page titles and descriptions, canonical URLs, `sitemap.xml`, `robots.txt`, a generated social share image, and JSON-LD for the person and each case study.
 - Security headers and redirects are set in `next.config.mjs`.
 - Fonts (Geist and Geist Mono, SIL Open Font License) are self-hosted in `app/fonts`, so builds do not depend on a font CDN.
 - Accessible by default: skip link, visible focus, labelled navigation, keyboard-operable search, and an automated axe scan with no violations on any page.
-- Runtime dependencies: Next.js, React, Motion, Lenis, and Lucide icons.
+- Runtime dependencies: Next.js, React, Motion, Lenis, Lucide icons, and the ElevenLabs React SDK (loaded only when the voice guide is opened).
 
 ## Configuration
+
+For the voice guide, set `ELEVENLABS_API_KEY` and `ELEVENLABS_AGENT_ID` in Vercel (see `.env.example`). Without them the guide stays hidden.
 
 Set `NEXT_PUBLIC_SITE_URL` in Vercel if the site moves to a custom domain. It feeds canonical URLs, the sitemap, and share cards. Without it, the current Vercel URL is used.
 

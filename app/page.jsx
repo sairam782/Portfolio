@@ -84,7 +84,7 @@ export default function Home() {
           <SectionHead
             id="hack-heading"
             title={`${count} AI prototypes in one year`}
-            lead={`Built with teams at hackathons, in a day, a weekend, or a build week. Healthcare, fintech, productivity, and developer tools. ${demos} have live demos.`}
+            lead={`Built with teams at hackathons, in a day, a weekend, or a build week. Healthcare, fintech, climate data, productivity, and developer tools. ${demos} have live demos.`}
           >
             <Link className="btn btn--glass" href="/hackathons">
               All hackathon builds

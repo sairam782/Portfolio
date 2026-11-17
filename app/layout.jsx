@@ -56,6 +56,9 @@ const personSchema = {
 const themeBoot = `(function(){try{var ids=${JSON.stringify(themeIds)};var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t&&ids.indexOf(t)>-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
 
 export default function RootLayout({ children }) {
+  // The voice guide only appears when its keys are set. See docs/voice-guide.md.
+  const voiceGuide = Boolean(process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_AGENT_ID);
+
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`} data-theme={appearance.theme} suppressHydrationWarning>
       <head>
@@ -70,7 +73,7 @@ export default function RootLayout({ children }) {
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <Providers>
+        <Providers voiceGuide={voiceGuide}>
           <SiteHeader />
           <main id="main" tabIndex={-1}>
             {children}

@@ -44,3 +44,16 @@ The two individual LinkedIn posts supplied by the user were readable in the publ
 - The 0.74 to 0.94 accuracy result is explicitly scoped to the team's synthetic-client prototype evaluation. No award, finalist status, production financial outcome, public repository, or demo URL is asserted.
 
 LinkedIn entries link to the author posts with a “Read LinkedIn post” label; they are not mislabeled as Devpost submissions. Display order follows event dates, newest first.
+
+## November 16, 2026 addition
+
+### Bhoomi: NASA Space Apps Challenge 2026
+
+- Repository (public): https://github.com/Ttheegela/bhoomi
+- Live site: https://bhoomi.earth/
+- Event: https://www.spaceappschallenge.org/2026/ , challenge "Be An Earth System Trend Detective!"
+- Date and place: November 14 to 15, 2026, local event at Princeton Public Library, Princeton, NJ. Basis: the run sheet in the repository (`docs/PLAN.md`) and commit dates.
+- Roles, from the README "Team" section: Tarun Theegela wrote the code. Abhishek Sairam Gaduputi wrote the golden evaluation questions (`evals/cases.toml`), did human QA on each production deploy, and wrote the story and submission (`docs/submission/`). The portfolio states this split as it is.
+- Numbers: the Atlantic City check (4.25 mm per year against NOAA's 4.24 ± 0.08) is from the README. "Passed all 15 evaluation questions" is from `docs/submission/project-page.md` (runs of Sunday November 15).
+- No award is asserted. The name "Tidemark" does not appear in the repository, so it is not used on the site.
+- There is no Devpost page. The entry links to the repository with a "Project repository" label.
