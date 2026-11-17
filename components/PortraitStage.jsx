@@ -10,10 +10,10 @@ export default function PortraitStage({ priority = false, sizes = "(max-width: 8
       <Spotlight className="portrait-frame">
         <Image
           className="portrait-img"
-          src="/assets/portrait-cutout.webp"
+          src="/assets/abhishek-portrait.webp"
           alt={`Portrait of ${profile.name}`}
-          width={1200}
-          height={1320}
+          width={1100}
+          height={1365}
           sizes={sizes}
           priority={priority}
         />

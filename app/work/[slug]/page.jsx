@@ -5,7 +5,8 @@ import Flow from "@/components/Flow";
 import CaseVisual from "@/components/CaseVisual";
 import ContactBand from "@/components/ContactBand";
 import Spotlight from "@/components/fx/Spotlight";
-import { Reveal, Words } from "@/components/fx/Reveal";
+import { Reveal } from "@/components/fx/Reveal";
+import { Intro, IntroWords } from "@/components/fx/Intro";
 import { caseStudies, getCaseStudy } from "@/lib/work";
 import { profile, siteUrl } from "@/lib/site";
 
@@ -65,18 +66,18 @@ export default async function CaseStudyPage({ params }) {
               <span aria-current="page">{study.shortTitle}</span>
             </nav>
             <h1>
-              <Words text={study.title} stagger={0.04} />
+              <IntroWords text={study.title} stagger={0.04} />
             </h1>
-            <Reveal delay={0.3}>
+            <Intro delay={0.12}>
               <p className="lead">{study.summary}</p>
-            </Reveal>
+            </Intro>
           </div>
-          <Reveal className="case-art" delay={0.2}>
+          <Intro className="case-art" delay={0.2}>
             <CaseVisual slug={study.slug} />
-          </Reveal>
+          </Intro>
         </div>
         <div className="wrap">
-          <Reveal delay={0.35}>
+          <Intro delay={0.3}>
             <dl className="facts">
               {facts.map(([term, value]) => (
                 <div key={term}>
@@ -85,7 +86,7 @@ export default async function CaseStudyPage({ params }) {
                 </div>
               ))}
             </dl>
-          </Reveal>
+          </Intro>
         </div>
       </header>
 

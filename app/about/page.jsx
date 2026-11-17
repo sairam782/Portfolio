@@ -1,9 +1,10 @@
-import Link from "next/link";
 import ContactBand from "@/components/ContactBand";
 import PageHead from "@/components/PageHead";
 import PortraitStage from "@/components/PortraitStage";
+import GuitarCard from "@/components/GuitarCard";
 import ScrollText from "@/components/fx/ScrollText";
 import { Reveal } from "@/components/fx/Reveal";
+import { Intro } from "@/components/fx/Intro";
 import { education } from "@/lib/experience";
 import { profile } from "@/lib/site";
 
@@ -45,9 +46,9 @@ export default function AboutPage() {
       <section className="section section--flush">
         <div className="wrap about-grid">
           <aside className="about-side">
-            <Reveal>
+            <Intro delay={0.15}>
               <PortraitStage priority />
-            </Reveal>
+            </Intro>
             <Reveal delay={0.1}>
               <dl className="fact-list">
                 {facts.map(([term, value]) => (
@@ -105,18 +106,15 @@ export default function AboutPage() {
               ))}
             </ul>
 
-            <Reveal as="h2">Outside of work</Reveal>
-            <Reveal>
-              <p>
-                Guitar, a new idea, and probably the next hackathon. I build at hackathons around New York and New Jersey
-                most months.{" "}
-                <Link className="text-link" href="/hackathons">
-                  See the builds
-                </Link>
-                .
-              </p>
-            </Reveal>
           </div>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="wrap">
+          <Reveal>
+            <GuitarCard />
+          </Reveal>
         </div>
       </section>
 

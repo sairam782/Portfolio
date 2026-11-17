@@ -60,19 +60,22 @@ export default function Home() {
       <section className="section" aria-labelledby="how-heading">
         <div className="wrap">
           <SectionHead id="how-heading" title="How I build" lead="Three habits that show up in every project." />
-          <div className="principles">
+          <ol className="principles">
             {principles.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.08}>
-                <Spotlight as="article" className="principle">
-                  <h3>{item.title}</h3>
+              <Reveal as="li" className="principle" key={item.title} delay={i * 0.08}>
+                <span className="principle-no" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <h3>{item.title}</h3>
+                <div>
                   <p>{item.body}</p>
                   <Link className="text-link" href={item.link.href}>
                     See it in {item.link.label}
                   </Link>
-                </Spotlight>
+                </div>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import useStill from "./useStill";
 
 function Word({ progress, range, children }) {
-  const opacity = useTransform(progress, range, [0.18, 1]);
+  const opacity = useTransform(progress, range, [0.4, 1]);
   return (
     <motion.span style={{ opacity }} aria-hidden="true">
       {children}{" "}

@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Copy, CornerDownLeft, Download, FileText, Search, Trophy, User } from "lucide-react";
-import { nav, profile } from "@/lib/site";
+import { ArrowUpRight, Copy, CornerDownLeft, Download, FileText, Palette, Search, Trophy, User } from "lucide-react";
+import { appearance, nav, profile } from "@/lib/site";
+import { themes } from "@/lib/themes";
+import { setTheme } from "./ThemePicker";
 import { caseStudies } from "@/lib/work";
 import { hackathons } from "@/lib/hackathons";
 import { lockScroll, unlockScroll } from "./fx/scroller";
@@ -31,6 +33,7 @@ export default function CommandPalette() {
       { group: "Actions", label: "Download resume", hint: "PDF", action: "resume", icon: Download },
       { group: "Actions", label: "Open GitHub", external: profile.github, icon: ArrowUpRight },
       { group: "Actions", label: "Open LinkedIn", external: profile.linkedin, icon: ArrowUpRight },
+      ...(appearance.themePicker ? themes.map((theme) => ({ group: "Colour", label: `${theme.name} colour`, theme: theme.id, icon: Palette })) : []),
     ],
     []
   );
@@ -94,6 +97,11 @@ export default function CommandPalette() {
       } catch {
         setNote(`Copy did not work. The address is ${profile.email}.`);
       }
+      return;
+    }
+    if (item.theme) {
+      setTheme(item.theme);
+      setNote(`Colour set to ${item.label.replace(" colour", "")}.`);
       return;
     }
     if (item.action === "resume") {

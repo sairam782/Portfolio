@@ -13,14 +13,14 @@ function Defs({ id }) {
   return (
     <defs>
       <linearGradient id={`${id}-g`} x1="0" y1="1" x2="1" y2="0">
-        <stop offset="0" stopColor="#3d80ff" />
-        <stop offset="0.45" stopColor="#9461ff" />
-        <stop offset="0.75" stopColor="#ff5ca8" />
-        <stop offset="1" stopColor="#ffa852" />
+        <stop offset="0" style={{ stopColor: "var(--c1)" }} />
+        <stop offset="0.45" style={{ stopColor: "var(--c2)" }} />
+        <stop offset="0.75" style={{ stopColor: "var(--c3)" }} />
+        <stop offset="1" style={{ stopColor: "var(--c4)" }} />
       </linearGradient>
       <radialGradient id={`${id}-glow`}>
-        <stop offset="0" stopColor="#9461ff" stopOpacity="0.5" />
-        <stop offset="1" stopColor="#9461ff" stopOpacity="0" />
+        <stop offset="0" style={{ stopColor: "var(--c2)" }} stopOpacity="0.5" />
+        <stop offset="1" style={{ stopColor: "var(--c2)" }} stopOpacity="0" />
       </radialGradient>
     </defs>
   );
@@ -186,7 +186,7 @@ function Diffusion({ id }) {
           <ellipse cx="200" cy="140" rx="52" ry="64" opacity="0.7" />
           <path d="M200 66 V214" opacity="0.6" />
           <path d="M168 104 q16 18 0 40 q-14 20 4 42 M232 104 q-16 18 0 40 q14 20 -4 42" opacity="0.8" />
-          <ellipse cx="222" cy="120" rx="13" ry="10" fill="rgba(255,92,168,0.35)" stroke="#ff5ca8" />
+          <ellipse cx="222" cy="120" rx="13" ry="10" style={{ fill: "rgba(var(--c3-rgb), 0.35)", stroke: "var(--c3)" }} />
         </g>
         <rect className="cv-noise" x="100" y="38" width="200" height="200" filter={`url(#${id}-noise)`} />
       </g>
@@ -220,7 +220,7 @@ function Face({ id }) {
         ))}
       </g>
       {patches.map(([x, y], i) => (
-        <rect key={i} className="cv-patch" x={x} y={y} width="18" height="18" rx="4" fill="rgba(61,128,255,0.25)" stroke="#3d80ff" strokeWidth="1.4" style={{ "--d": `${i * 0.35}s` }} />
+        <rect key={i} className="cv-patch" x={x} y={y} width="18" height="18" rx="4" strokeWidth="1.4" style={{ "--d": `${i * 0.35}s`, fill: "rgba(var(--c1-rgb), 0.25)", stroke: "var(--c1)" }} />
       ))}
       <g fill="none" stroke={`url(#${id}-g)`} strokeWidth="1.5" className="cv-attn">
         <path d="M228 92 Q290 110 258 128" />

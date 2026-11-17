@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-// Live background: slow ribbons of light, drawn by a fragment shader.
-// It leans toward the cursor, pauses when off screen, and holds one still frame
-// for visitors who prefer reduced motion.
+// Live background: slow ribbons of light, drawn by a fragment shader in the
+// colours of the active theme. It leans toward the cursor, pauses when off
+// screen, and holds one still frame for visitors who prefer reduced motion.
+// On slow devices it first lowers its resolution, then settles on a still frame.
 
 const vertex = `attribute vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
 
@@ -13,6 +14,10 @@ precision highp float;
 uniform vec2 uRes;
 uniform float uTime;
 uniform vec2 uMouse;
+uniform vec3 uC1;
+uniform vec3 uC2;
+uniform vec3 uC3;
+uniform vec3 uC4;
 
 vec3 mod289(vec3 x){ return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec2 mod289(vec2 x){ return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -67,10 +72,11 @@ void main(){
   vec2 m = uMouse * vec2(uRes.x / uRes.y, 1.0) * 0.5;
   p += (m - p) * 0.06 * exp(-1.2 * length(p - m));
 
-  vec3 blue = vec3(0.24, 0.50, 1.00);
-  vec3 violet = vec3(0.58, 0.38, 1.00);
-  vec3 pink = vec3(1.00, 0.36, 0.66);
-  vec3 amber = vec3(1.00, 0.66, 0.32);
+  // the four colours of the active theme
+  vec3 blue = uC1;
+  vec3 violet = uC2;
+  vec3 pink = uC3;
+  vec3 amber = uC4;
 
   float flow = fbm(p * 0.9 + vec2(t * 0.5, -t * 0.3));
   vec2 q = p + 0.12 * vec2(flow, fbm(p * 1.3 - t * 0.4));
@@ -138,16 +144,31 @@ export default function Aurora({ className = "" }) {
     const uRes = gl.getUniformLocation(program, "uRes");
     const uTime = gl.getUniformLocation(program, "uTime");
     const uMouse = gl.getUniformLocation(program, "uMouse");
+    const uColors = ["uC1", "uC2", "uC3", "uC4"].map((name) => gl.getUniformLocation(program, name));
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const mouse = { x: 0, y: -0.3, tx: 0, ty: -0.3 };
     let frame = 0;
     let visible = true;
+    let frozen = reduce;
+    let quality = 0.6;
+    let slow = 0;
+    let sampled = 0;
+    let last = 0;
     const start = performance.now();
+
+    const paint = () => {
+      const css = getComputedStyle(document.documentElement);
+      uColors.forEach((uniform, i) => {
+        const hex = css.getPropertyValue(`--c${i + 1}`).trim();
+        const value = /^#[0-9a-f]{6}$/i.test(hex) ? hex : "#888888";
+        gl.uniform3f(uniform, ...[1, 3, 5].map((at) => parseInt(value.slice(at, at + 2), 16) / 255));
+      });
+    };
 
     const resize = () => {
       // Render below native resolution: the image is soft by design, so this is free quality-wise.
-      const scale = Math.min(window.devicePixelRatio || 1, 1.5) * 0.6;
+      const scale = Math.min(window.devicePixelRatio || 1, 1.5) * quality;
       const width = Math.max(1, Math.floor(canvas.clientWidth * scale));
       const height = Math.max(1, Math.floor(canvas.clientHeight * scale));
       if (canvas.width !== width || canvas.height !== height) {
@@ -158,18 +179,41 @@ export default function Aurora({ className = "" }) {
       gl.uniform2f(uRes, width, height);
     };
 
+    // Watches the first second of frames. A device that cannot keep up gets a
+    // cheaper picture, and if that is still too much, one still frame.
+    const pace = (now) => {
+      if (sampled > 40) return;
+      if (last) {
+        sampled += 1;
+        if (now - last > 34) slow += now - last > 80 ? 3 : 1;
+        if (slow >= 8) {
+          slow = 0;
+          sampled = 0;
+          if (quality > 0.3) {
+            quality = 0.3;
+            resize();
+          } else {
+            frozen = true;
+          }
+        }
+      }
+      last = now;
+    };
+
     const draw = (now) => {
+      pace(now);
       mouse.x += (mouse.tx - mouse.x) * 0.04;
       mouse.y += (mouse.ty - mouse.y) * 0.04;
       gl.uniform1f(uTime, reduce ? 14 : 14 + (now - start) / 1000);
       gl.uniform2f(uMouse, mouse.x, mouse.y);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       canvas.dataset.ready = "true";
-      frame = !reduce && visible && !document.hidden ? requestAnimationFrame(draw) : 0;
+      frame = !frozen && visible && !document.hidden ? requestAnimationFrame(draw) : 0;
     };
 
     const wake = () => {
-      if (!frame && visible && !document.hidden) frame = requestAnimationFrame(draw);
+      last = 0;
+      if (!frame && !frozen && visible && !document.hidden) frame = requestAnimationFrame(draw);
     };
 
     const onMove = (event) => {
@@ -178,9 +222,14 @@ export default function Aurora({ className = "" }) {
       mouse.ty = -(((event.clientY - box.top) / box.height) * 2 - 1);
     };
 
+    const onTheme = () => {
+      paint();
+      if (!frame) requestAnimationFrame(draw);
+    };
+
     const sizeObserver = new ResizeObserver(() => {
       resize();
-      if (reduce) requestAnimationFrame(draw);
+      if (frozen && !frame) requestAnimationFrame(draw);
     });
     sizeObserver.observe(canvas);
 
@@ -191,7 +240,9 @@ export default function Aurora({ className = "" }) {
     viewObserver.observe(canvas);
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("themechange", onTheme);
     document.addEventListener("visibilitychange", wake);
+    paint();
     resize();
     frame = requestAnimationFrame(draw);
 
@@ -200,6 +251,7 @@ export default function Aurora({ className = "" }) {
       sizeObserver.disconnect();
       viewObserver.disconnect();
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("themechange", onTheme);
       document.removeEventListener("visibilitychange", wake);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };

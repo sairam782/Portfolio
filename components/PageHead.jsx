@@ -1,4 +1,4 @@
-import { Reveal, Words } from "./fx/Reveal";
+import { Intro, IntroWords } from "./fx/Intro";
 
 // Title block for inner pages, with the same light as the home page behind it.
 export default function PageHead({ title, lead, crumbs, children }) {
@@ -8,14 +8,14 @@ export default function PageHead({ title, lead, crumbs, children }) {
       <div className="wrap">
         {crumbs}
         <h1>
-          <Words text={title} stagger={0.05} />
+          <IntroWords text={title} stagger={0.05} />
         </h1>
         {lead && (
-          <Reveal delay={0.25}>
+          <Intro delay={0.12}>
             <p className="lead">{lead}</p>
-          </Reveal>
+          </Intro>
         )}
-        {children && <Reveal delay={0.35}>{children}</Reveal>}
+        {children && <Intro delay={0.28}>{children}</Intro>}
       </div>
     </header>
   );

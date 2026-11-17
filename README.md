@@ -23,7 +23,8 @@ npm run start
 
 | Path | What it holds |
 | --- | --- |
-| `lib/site.js` | Name, links, email, resume path, navigation, site URL, optional hero video |
+| `lib/site.js` | Name, links, email, resume path, navigation, site URL, colour theme, optional hero video |
+| `lib/themes.js` | The colour themes. Pick the default in `lib/site.js` |
 | `lib/work.js` | Case studies, technical capabilities, and the "How I build" principles |
 | `lib/experience.js` | Work history, education, skills |
 | `lib/hackathons.js` | Hackathon builds with source links |
@@ -47,7 +48,7 @@ To update content, edit the files in `lib/`. Pages read from them, so nothing el
 
 ## Motion and interaction
 
-- Hero background: a WebGL shader of slow ribbons of light that leans toward the cursor. It pauses off screen. To use a video instead, set `heroVideo` in `lib/site.js`.
+- Hero background: a WebGL shader of slow ribbons of light, in the active theme colour, that leans toward the cursor. It pauses off screen and steps down to a still frame on slow devices. To use a video instead, set `heroVideo` in `lib/site.js`.
 - Smooth scrolling (Lenis) on desktop. Touch devices keep native scroll.
 - Scroll-driven sections: a statement that lights up word by word, a pinned horizontal rail of case studies, and focus-area cards that stack.
 - Cards follow the cursor with a spotlight and a slight tilt. Primary buttons are magnetic. Numbers count up when they enter the view.

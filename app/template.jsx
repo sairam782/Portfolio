@@ -1,12 +1,5 @@
-"use client";
-
-import { motion } from "motion/react";
-
 // Each route fades and rises in. A template re-mounts on navigation, so this runs per page.
+// The animation is plain CSS, so the first screen never waits for JavaScript.
 export default function Template({ children }) {
-  return (
-    <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
-      {children}
-    </motion.div>
-  );
+  return <div className="page-in">{children}</div>;
 }

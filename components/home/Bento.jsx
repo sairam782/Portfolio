@@ -34,14 +34,14 @@ export default function Bento({ hackathonCount }) {
         <svg className="tile-chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="bento-line" x1="0" x2="1">
-              <stop offset="0" stopColor="#3d80ff" />
-              <stop offset="0.5" stopColor="#9461ff" />
-              <stop offset="0.8" stopColor="#ff5ca8" />
-              <stop offset="1" stopColor="#ffa852" />
+              <stop offset="0" style={{ stopColor: "var(--c1)" }} />
+              <stop offset="0.5" style={{ stopColor: "var(--c2)" }} />
+              <stop offset="0.8" style={{ stopColor: "var(--c3)" }} />
+              <stop offset="1" style={{ stopColor: "var(--c4)" }} />
             </linearGradient>
             <linearGradient id="bento-area" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#9461ff" stopOpacity="0.35" />
-              <stop offset="1" stopColor="#9461ff" stopOpacity="0" />
+              <stop offset="0" style={{ stopColor: "var(--c2)" }} stopOpacity="0.35" />
+              <stop offset="1" style={{ stopColor: "var(--c2)" }} stopOpacity="0" />
             </linearGradient>
           </defs>
           <motion.path

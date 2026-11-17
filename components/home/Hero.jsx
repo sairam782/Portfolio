@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowDown, Download } from "lucide-react";
 import Aurora from "@/components/fx/Aurora";
 import Magnetic from "@/components/fx/Magnetic";
-import { Line, Reveal, Words } from "@/components/fx/Reveal";
+import { Intro, IntroLine, IntroWords } from "@/components/fx/Intro";
 import { profile } from "@/lib/site";
 
 const orgs = ["Froker", "Montra Electric Tractor", "NJIT", "Manipal Institute of Technology"];
@@ -25,26 +25,26 @@ export default function Hero() {
       </div>
 
       <div className="wrap hero-inner">
-        <Reveal y={12}>
+        <Intro>
           <p className="pill">
             <i aria-hidden="true" /> {profile.availability}
           </p>
-        </Reveal>
+        </Intro>
 
         <h1 id="hero-heading">
-          <Words text="I build AI systems" delay={0.1} />
+          <IntroWords text="I build AI systems" delay={0.05} />
           <br />
-          <Line text="that ship." delay={0.4} className="grad" />
+          <IntroLine text="that ship." delay={0.3} className="grad" />
         </h1>
 
-        <Reveal delay={0.55}>
+        <Intro delay={0.2}>
           <p className="hero-lead">
             I am {profile.firstName}, an ML and AI engineer. I build recommendation engines, computer vision models, and
             LLM agent systems, and I own them from data pipeline to deployment. 3+ years in industry.
           </p>
-        </Reveal>
+        </Intro>
 
-        <Reveal delay={0.7}>
+        <Intro delay={0.45}>
           <div className="actions actions--center">
             <Magnetic>
               <Link className="btn btn--light btn--lg" href="/work">
@@ -57,10 +57,10 @@ export default function Hero() {
               </a>
             </Magnetic>
           </div>
-        </Reveal>
+        </Intro>
       </div>
 
-      <Reveal className="hero-foot" delay={0.95} y={0}>
+      <Intro className="hero-foot" delay={0.7}>
         <div className="wrap">
           <p>Experience at</p>
           <ul>
@@ -72,7 +72,7 @@ export default function Hero() {
             <ArrowDown size={16} aria-hidden="true" />
           </a>
         </div>
-      </Reveal>
+      </Intro>
     </section>
   );
 }

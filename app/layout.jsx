@@ -4,7 +4,8 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import { profile, siteUrl } from "@/lib/site";
+import { appearance, profile, siteUrl } from "@/lib/site";
+import { themeCss, themeIds } from "@/lib/themes";
 
 // Geist and Geist Mono, self-hosted (SIL Open Font License).
 const sans = localFont({ src: "./fonts/Geist-latin.woff2", variable: "--font-sans", weight: "100 900", display: "swap" });
@@ -51,9 +52,16 @@ const personSchema = {
   sameAs: [profile.github, profile.linkedin, profile.devpost],
 };
 
+// Applies a saved or linked colour choice before the first paint, so the page never flashes the default.
+const themeBoot = `(function(){try{var ids=${JSON.stringify(themeIds)};var t=new URLSearchParams(location.search).get("theme")||localStorage.getItem("theme");if(t&&ids.indexOf(t)>-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})()`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`} data-theme={appearance.theme} suppressHydrationWarning>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: themeCss(appearance.theme) }} />
+        {appearance.themePicker && <script dangerouslySetInnerHTML={{ __html: themeBoot }} />}
+      </head>
       <body>
         {/* Without JavaScript, nothing waits for a reveal animation. */}
         <noscript>
