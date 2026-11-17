@@ -7,6 +7,7 @@ import { ArrowUp, Mic, MicOff, PhoneOff, Volume2, VolumeX, X } from "lucide-reac
 import { nav, profile } from "@/lib/site";
 import { caseStudies } from "@/lib/work";
 import { voice } from "@/lib/voice";
+import Orb from "./Orb";
 import { play, setSoundOn, soundOn } from "./sounds";
 
 // Pages the guide may open. Anything else it asks for is refused.
@@ -22,7 +23,7 @@ const problems = {
 
 const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
-function Panel({ open, onClose }) {
+function Panel({ open, intent, onClose, onState }) {
   const router = useRouter();
   const [phase, setPhase] = useState("idle"); // idle, starting, live, ended
   const [mode, setMode] = useState("voice"); // voice or text
@@ -138,6 +139,14 @@ function Panel({ open, onClose }) {
     if (phase === "live" || phase === "starting") chat.endSession();
   }, [chat, phase]);
 
+  // The dock says how the visitor wants to start: by voice or by typing.
+  useEffect(() => {
+    if (!open || !intent) return;
+    if (intent.mode === "voice") start("voice");
+    else field.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [intent?.id]);
+
   // The microphone is never live while the panel is closed.
   useEffect(() => {
     if (!open) end();
@@ -179,7 +188,7 @@ function Panel({ open, onClose }) {
   }, [live, mode]);
 
   useEffect(() => {
-    log.current?.scrollTo({ top: log.current.scrollHeight });
+    if (lines.length) log.current?.scrollTo({ top: log.current.scrollHeight });
   }, [lines]);
 
   useEffect(() => {
@@ -214,14 +223,20 @@ function Panel({ open, onClose }) {
   const status =
     phase === "starting" ? "Connecting" : !live ? (phase === "ended" ? "Chat ended" : "Ready") : mode === "text" ? "Chatting by text" : chat.isMuted ? "Microphone muted" : speaking ? "Speaking" : "Listening";
 
+  const look = phase === "starting" ? "starting" : speaking ? "speaking" : live ? "live" : "idle";
+  // The big orb shows before a chat starts and during a voice call. Typed chats keep the space for text.
+  const stage = lines.length === 0 || (mode === "voice" && (live || phase === "starting"));
+
+  useEffect(() => {
+    onState?.(look);
+  }, [look, onState]);
+
   if (!open) return null;
 
   return (
     <section id="voice-panel" className="voice-panel" role="dialog" aria-label="AI guide to this portfolio" data-lenis-prevent data-phase={phase}>
       <div className="voice-head">
-        <div ref={orb} className="voice-orb" data-live={live} data-speaking={speaking} aria-hidden="true">
-          <i />
-        </div>
+        {!stage && <Orb size={36} state={look} />}
         <div className="voice-title">
           <strong>
             {voice.name} <span className="voice-badge">AI</span>
@@ -239,10 +254,16 @@ function Panel({ open, onClose }) {
         </button>
       </div>
 
+      {stage && (
+        <div className="voice-stage">
+          <Orb ref={orb} size={84} state={look} />
+          <p>{phase === "starting" ? "Connecting to the guide\u2026" : live ? status : `Ask about ${profile.firstName}\u2019s projects, experience, or skills.`}</p>
+        </div>
+      )}
+
       <div className="voice-log" ref={log} role="log" aria-live="polite" aria-label="Conversation" tabIndex={0}>
         {lines.length === 0 && phase !== "starting" && (
           <div className="voice-intro">
-            <p>Ask about {profile.firstName}&rsquo;s projects, experience, or skills. Talk, or type.</p>
             <ul>
               {voice.suggestions.map((question) => (
                 <li key={question}>
@@ -254,7 +275,6 @@ function Panel({ open, onClose }) {
             </ul>
           </div>
         )}
-        {phase === "starting" && lines.length === 0 && <p className="voice-wait">Connecting to the guide&hellip;</p>}
         {lines.map((line) => (
           <p key={line.id} className={`voice-line voice-line--${line.role}`}>
             <span className="sr-only">{line.role === "user" ? "You: " : "Guide: "}</span>
