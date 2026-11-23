@@ -8,14 +8,15 @@ import { numberWord } from "@/lib/format";
 export const metadata = {
   title: "Work",
   description:
-    "ML and AI case studies: a recommendation engine that lifted engagement 37%, vision models for an autonomous tractor, a multi-agent incident response system, and research in reinforcement learning, diffusion models, and deepfake detection.",
+    "ML and AI case studies: a recommendation engine that lifted engagement 37%, vision models for an autonomous tractor, a multi-agent incident response system, and research in multi-agent reinforcement learning and deepfake detection.",
   alternates: { canonical: "/work" },
 };
 
 export default function WorkPage() {
   const groups = [
     { title: "Industry", items: caseStudies.filter((item) => item.kind === "professional") },
-    { title: "Projects and research", items: caseStudies.filter((item) => item.kind === "project") },
+    { title: "Projects", items: caseStudies.filter((item) => item.kind === "project") },
+    { title: "Research", items: caseStudies.filter((item) => item.kind === "research") },
   ];
 
   return (

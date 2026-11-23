@@ -197,6 +197,52 @@ function Camera({ id, still }) {
   );
 }
 
+/* Little Lines: a child's stick figure, with joints found on the drawing, waves. */
+function Sketch({ id, still }) {
+  const dur = "2.6s";
+  const up = "M200 132 L236 112 L252 78";
+  const down = "M200 132 L238 140 L262 128";
+  return (
+    <>
+      <circle cx="200" cy="160" r="150" fill={`url(#${id}-glow)`} opacity="0.45" />
+      <g fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.92">
+        <circle cx="200" cy="92" r="22" />
+        <path d="M200 114 L198 196 M200 132 L162 160 L150 190 M198 196 L172 260 M198 196 L228 260" />
+        <path d={still ? up : down}>
+          {!still && <animate attributeName="d" values={`${down};${up};${down}`} dur={dur} repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" />}
+        </path>
+      </g>
+      <path d="M96 64 a22 22 0 1 0 0.1 0" fill="none" stroke={line} strokeWidth="3" />
+      {[[200, 132], [162, 160], [198, 196], [172, 260], [228, 260], [200, 114]].map(([x, y]) => (
+        <circle key={`${x}-${y}`} cx={x} cy={y} r="5.5" fill={`url(#${id}-g)`} stroke="#0b0b0e" strokeWidth="2" />
+      ))}
+      <path d="M70 272 H330" stroke={line} />
+    </>
+  );
+}
+
+/* Swarm power networks: robots chain out from the source and branch toward batteries. */
+function Swarm({ id }) {
+  const chain = [[200, 262], [200, 236], [200, 210], [200, 184], [182, 162], [164, 140], [146, 118], [218, 162], [236, 140], [254, 118], [272, 96]];
+  const batteries = [[128, 92], [292, 70]];
+  return (
+    <>
+      <circle cx="200" cy="160" r="150" fill={`url(#${id}-glow)`} opacity="0.45" />
+      <path d="M200 262 V184 L146 118 M200 184 L272 96" fill="none" stroke={`url(#${id}-g)`} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      {chain.map(([x, y], i) => (
+        <circle key={i} className="cv-node" cx={x} cy={y} r="6" fill="#fff" stroke="#0b0b0e" strokeWidth="2" style={{ "--d": `${i * 0.12}s` }} />
+      ))}
+      <rect x="186" y="262" width="28" height="18" rx="4" fill={`url(#${id}-g)`} />
+      {batteries.map(([x, y]) => (
+        <g key={x}>
+          <rect x={x - 14} y={y - 20} width="28" height="40" rx="5" fill="none" stroke="#fff" strokeWidth="2.5" />
+          <rect className="cv-meter" x={x - 9} y={y - 15} width="18" height="30" rx="2" fill={`url(#${id}-g)`} />
+        </g>
+      ))}
+    </>
+  );
+}
+
 /* Synthetic MRI: a slice emerges from noise, step by step. */
 function Diffusion({ id }) {
   return (
@@ -320,6 +366,8 @@ const visuals = {
   trinetra: Agents,
   gymcom: Pose,
   camhydrogen: Camera,
+  littlelines: Sketch,
+  "swarm-power-networks": Swarm,
   "rl-skin-cancer": Triage,
   "synthetic-mri-generation": Diffusion,
   "deepfake-detection": Face,
