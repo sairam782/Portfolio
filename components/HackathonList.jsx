@@ -93,7 +93,7 @@ export default function HackathonList({ hackathons }) {
                   </details>
                   <div className="link-row">
                     <a className="text-link ext" href={hack.source} target="_blank" rel="noopener noreferrer">
-                      {{ LinkedIn: "LinkedIn post", GitHub: "Project repository" }[hack.sourcePlatform] ?? "Devpost submission"}
+                      {{ LinkedIn: "LinkedIn post", GitHub: "Project repository", "Cerebral Valley": "Hackathon submission" }[hack.sourcePlatform] ?? "Devpost submission"}
                       <span className="sr-only"> for {hack.project}</span>
                       <ArrowUpRight size={15} aria-hidden="true" />
                     </a>

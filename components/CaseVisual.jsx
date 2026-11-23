@@ -165,6 +165,38 @@ function Pose({ id, still }) {
   );
 }
 
+/* camhydrogen: the subject box glides to where the director wants it, then the frame settles. */
+function Camera({ id, still }) {
+  const dur = "4s";
+  const from = { x: 112, y: 120 };
+  const to = { x: 170, y: 98 };
+  const at = still ? to : from;
+  const corners = "M72 66 v-22 h22 M306 44 h22 v22 M328 234 v22 h-22 M94 256 h-22 v-22";
+  return (
+    <>
+      <circle cx="200" cy="150" r="150" fill={`url(#${id}-glow)`} opacity="0.45" />
+      <path d={corners} fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+      <path d="M152 44 V256 M248 44 V256 M72 114 H328 M72 186 H328" stroke={line} />
+      {/* where the subject should land */}
+      <rect x={to.x} y={to.y} width="60" height="104" rx="8" fill="none" stroke={`url(#${id}-g)`} strokeWidth="2" strokeDasharray="5 6" opacity="0.8" />
+      {/* the subject now */}
+      <rect x={at.x} y={at.y} width="60" height="104" rx="8" fill={soft} stroke={`url(#${id}-g)`} strokeWidth="3.5">
+        {!still && (
+          <>
+            <animate attributeName="x" values={`${from.x};${to.x};${to.x};${from.x}`} keyTimes="0;0.45;0.8;1" dur={dur} repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0 0 1 1;0.45 0 0.55 1" />
+            <animate attributeName="y" values={`${from.y};${to.y};${to.y};${from.y}`} keyTimes="0;0.45;0.8;1" dur={dur} repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0 0 1 1;0.45 0 0.55 1" />
+          </>
+        )}
+      </rect>
+      {/* exposure dial */}
+      {[-2, -1, 0, 1, 2].map((tick) => (
+        <path key={tick} d={`M${200 + tick * 26} 278 v${tick === 0 ? -14 : -8}`} stroke="#fff" strokeWidth="2" opacity={tick === 0 ? 0.9 : 0.4} />
+      ))}
+      <circle cx="200" cy="286" r="4" fill={`url(#${id}-g)`} />
+    </>
+  );
+}
+
 /* Synthetic MRI: a slice emerges from noise, step by step. */
 function Diffusion({ id }) {
   return (
@@ -287,6 +319,7 @@ const visuals = {
   "montra-autonomous-spraying": Vision,
   trinetra: Agents,
   gymcom: Pose,
+  camhydrogen: Camera,
   "rl-skin-cancer": Triage,
   "synthetic-mri-generation": Diffusion,
   "deepfake-detection": Face,

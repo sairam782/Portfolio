@@ -57,3 +57,14 @@ LinkedIn entries link to the author posts with a “Read LinkedIn post” label;
 - Numbers: the Atlantic City check (4.25 mm per year against NOAA's 4.24 ± 0.08) is from the README. "Passed all 15 evaluation questions" is from `docs/submission/project-page.md` (runs of Sunday November 15).
 - No award is asserted. The name "Tidemark" does not appear in the repository, so it is not used on the site.
 - There is no Devpost page. The entry links to the repository with a "Project repository" label.
+
+## November 23, 2026 addition
+
+### Uno ReVoice: Gemini 4 NYC Hackathon
+
+- Gallery page: https://cerebralvalley.ai/e/gemini-4-nyc/hackathon/gallery/35 (team Abhi7, aridaka, jkumarr; tech list; "62 of 64 checks across eight scenarios").
+- Repository (public): https://github.com/sairam782/Gemini4-Googledeepmind-Hack . All 22 commits are by Abhishek, all on November 21, 2026; this is the basis for "I wrote the code" and for the date.
+- Lanes, latencies, the say-guard and the Twilio bridge are from the repository README. The README later reports 64/64 after fixes; the site uses the submission figure, 62 of 64.
+- Teammates' full names are not on the gallery page, so the site says "team of three" without naming them.
+- No award is claimed. The gallery page lists none.
+
